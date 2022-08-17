@@ -3,8 +3,8 @@ let infoWindow;
 
 function initMap() {
   let mapOptions = {
-    center: { lat: 41.881832, lng: -87.623177},
-    zoom: 10
+    center: { lat: 5.8325039, lng: -5.3648169},
+    zoom: 8
   };
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
   infoWindow = new google.maps.InfoWindow();
@@ -56,15 +56,15 @@ function initMap() {
   let markerList = [];
   let markerOptionsList = [ 
     {
-        position: new google.maps.LatLng(41.881, -87.6),
+        position: new google.maps.LatLng(6.6461292,-4.7079362), //Dimbokro
         map: map
     },
     {
-        position: new google.maps.LatLng(41.891800, -87.623171),
+        position: new google.maps.LatLng(6.9282028,-6.0334362), //Bonoua
         map: map
     },
     {
-        position: new google.maps.LatLng(41.901836, -87.623178),
+        position: new google.maps.LatLng(5.8325039,-5.3648169), //Divo
         map: map
     },
   ];
