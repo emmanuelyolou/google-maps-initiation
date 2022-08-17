@@ -39,6 +39,18 @@ function initMap() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
       });
+      //Fired if user refuses to give us access to his location
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+        );
+        infoWindow.open(map);
+      }
+
+      
     //Defines then displays multiple markers on the map
     let markerList = [];
     let markerOptionsList = [ 
