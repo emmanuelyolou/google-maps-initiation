@@ -53,7 +53,7 @@ function initMap() {
     },
   ];
   //We wait for a few seconds before showing the markers on the map
-  setTimeout(drop, 2500);
+  setTimeout(drop, 3300);
 }
 
 
@@ -69,7 +69,7 @@ function drop(){
           animation: google.maps.Animation.DROP,
         })
       );
-      markerList[i].addListener("click", () => showLocationInfo(markerList[i]));
+      markerList[i].addListener("click", () => showLocationInfo(markerList[i], markerOptionsList[i]));
     }, i * 300 );
   }
 }
@@ -81,9 +81,9 @@ function clearMarkerList() {
   markerList = [];
 }
 
-function showLocationInfo(marker){
+function showLocationInfo(marker, markerOptions){
   {
-    infoWindow.setContent(getContentString(marker.title));
+    infoWindow.setContent(getContentString(markerOptions.title));
     infoWindow.open({
       anchor: marker,
       map,
