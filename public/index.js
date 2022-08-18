@@ -14,7 +14,7 @@ function initMap() {
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
   locationButton.classList.add("user-location-btn");
-  locationIcon.classList.add("material-symbols-outlined", "user-location-icon");
+  locationIcon.classList.add("material-icons", "user-location-icon");
   locationIcon.textContent = "my_location";
   locationButton.appendChild(locationIcon);
 
