@@ -11,7 +11,18 @@ function initMap() {
     maxWidth: 350
   });
 
-  userLocationMarker = new google.maps.Marker();
+  userLocationMarker = new google.maps.Marker({
+    icon: {
+      scaledSize: new google.maps.Size(50, 50),
+      url: "./images/user.png"
+    }
+    // label: {
+    //   text: "e88a", // codepoint from https://fonts.google.com/icons
+    //   fontFamily: "Material Icons",
+    //   color: "#ffffff",
+    //   fontSize: "18px",
+    // }
+  });
   //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
@@ -36,7 +47,7 @@ function initMap() {
         map: map,
         icon: {
           scaledSize: new google.maps.Size(65, 50),
-          url: './basketball-g0fea61622_1920-removebg-preview.png'
+          url: './images/basketball-g0fea61622_1920-removebg-preview.png'
         },
         title: "Utb express"
     },
