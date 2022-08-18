@@ -1,6 +1,8 @@
 let map;
 let infoWindow;
 let userLocationMarker;
+let markerList = [];
+let markerOptionsList = [];
 function initMap() {
   let mapOptions = {
     center: { lat: 5.8325039, lng: -5.3648169},
@@ -13,9 +15,10 @@ function initMap() {
 
   userLocationMarker = new google.maps.Marker({
     icon: {
-      scaledSize: new google.maps.Size(50, 50),
+      scaledSize: new google.maps.Size(32, 32),
       url: "./images/user.png"
-    }
+    },
+    animation: google.maps.Animation.DROP
     // label: {
     //   text: "e88a", // codepoint from https://fonts.google.com/icons
     //   fontFamily: "Material Icons",
@@ -35,44 +38,58 @@ function initMap() {
   locationButton.addEventListener("click", showCurrentLocation);
 
   //Defines then displays multiple markers on the map
-  let markerList = [];
-  let markerOptionsList = [ 
+  markerOptionsList = [ 
     {
         position: { lat: 6.6461292, lng: -4.7079362}, //Dimbokro
-        map: map,
-        title: "Dimbokro"
+        title: "Dimbokro",
     },
     {
         position: { lat: 6.9282028, lng: -6.0334362}, //Bonon
-        map: map,
-        icon: {
-          scaledSize: new google.maps.Size(65, 50),
-          url: './images/basketball-g0fea61622_1920-removebg-preview.png'
-        },
-        title: "Utb express"
+        title: "Utb express",
     },
     {
         position: { lat: 5.8325039, lng: -5.3648169}, //Divo
-        map: map,
-        title: "Utb-Divo"
+        title: "Utb-Divo",
     },
   ];
-  for (let i = 0; i < markerOptionsList.length; i++) {
-      markerList[i] = new google.maps.Marker( markerOptionsList[i] );
+  //We wait for a few seconds before showing the markers on the map
+  setTimeout(drop, 2500);
+}
 
-    markerList[i].addListener("click", () => {
-      infoWindow.setContent(getContentString(markerList[i].title));
-      infoWindow.open({
-        anchor: markerList[i],
-        map,
-        shouldFocus: false,
-      });
+
+function drop(){
+  clearMarkerList();
+  //The display of each marker is delayed in relation to the next marker
+  for (let i = 0; i < markerOptionsList.length; i++) {
+    setTimeout(() => {
+      markerList.push(
+        new google.maps.Marker({
+          position: markerOptionsList[i].position,
+          map,
+          animation: google.maps.Animation.DROP,
+        })
+      );
+      markerList[i].addListener("click", () => showLocationInfo(markerList[i]));
+    }, i * 300 );
+  }
+}
+
+function clearMarkerList() {
+  for (let i = 0; i < markerList.length; i++) {
+    markerList[i].setMap(null);
+  }
+  markerList = [];
+}
+
+function showLocationInfo(marker){
+  {
+    infoWindow.setContent(getContentString(marker.title));
+    infoWindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
     });
   }
-
-  // let marker = new google.maps.Marker(markerOptions);
-
-  // console.log(marker);
 }
 
 function showCurrentLocation(){
