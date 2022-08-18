@@ -1,6 +1,6 @@
 let map;
 let infoWindow;
-
+let userLocationMarker;
 function initMap() {
   let mapOptions = {
     center: { lat: 5.8325039, lng: -5.3648169},
@@ -11,6 +11,8 @@ function initMap() {
     maxWidth: 350
   });
 
+  userLocationMarker = new google.maps.Marker();
+  //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
   locationButton.classList.add("user-location-btn");
@@ -19,43 +21,8 @@ function initMap() {
   locationButton.appendChild(locationIcon);
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
-  locationButton.addEventListener("click", () => {
-      // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
+  locationButton.addEventListener("click", showCurrentLocation);
 
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Votre position.");
-          infoWindow.open(map);
-          map.setCenter(pos);
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  });
-
-  //Fired if user refuses to give us access to his location
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-      browserHasGeolocation
-        ? "Erreur: Le Service de Géolocatlisation a échoué."
-        : "Erreur: Votre navigateur ne supporte pas la géolocalisation."
-    );
-    infoWindow.open(map);
-  }
-
-  
   //Defines then displays multiple markers on the map
   let markerList = [];
   let markerOptionsList = [ 
@@ -97,6 +64,45 @@ function initMap() {
   // console.log(marker);
 }
 
+function showCurrentLocation(){
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+
+        // infoWindow.setPosition(pos);
+        // infoWindow.setContent("Votre position.");
+        // infoWindow.open(map);
+        userLocationMarker.setPosition(pos);
+        userLocationMarker.setMap(map);
+        map.setCenter(pos);
+      },
+      () => {
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
+
+//Fired if user refuses to give us access to his location
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Erreur: Le Service de Géolocatlisation a échoué."
+      : "Erreur: Votre navigateur ne supporte pas la géolocalisation."
+  );
+  infoWindow.open(map);
+}
+
+  
 function getContentString(label){
   return  '<div id="content">' +
   '<div id="siteNotice">' +
