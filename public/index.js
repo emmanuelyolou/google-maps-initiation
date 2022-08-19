@@ -13,20 +13,21 @@ function initMap() {
     maxWidth: 350
   });
 
-  userLocationMarker = new google.maps.Marker({
-    icon: {
-      scaledSize: new google.maps.Size(32, 32),
-      url: "./images/user.png",
-    },
-      optimized: false,
-      animation: google.maps.Animation.DROP
-    // label: {
-    //   text: "e88a", // codepoint from https://fonts.google.com/icons
-    //   fontFamily: "Material Icons",
-    //   color: "#ffffff",
-    //   fontSize: "18px",
-    // }
-  });
+  // userLocationMarker = new google.maps.Marker({
+  //   icon: {
+  //     scaledSize: new google.maps.Size(32, 32),
+  //     url: "./images/user.png",
+  //   },
+  //     optimized: false,
+  //     animation: google.maps.Animation.DROP
+  //   // label: {
+  //   //   text: "e88a", // codepoint from https://fonts.google.com/icons
+  //   //   fontFamily: "Material Icons",
+  //   //   color: "#ffffff",
+  //   //   fontSize: "18px",
+  //   // }
+  // });
+
   //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
@@ -38,19 +39,6 @@ function initMap() {
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
   locationButton.addEventListener("click", showCurrentLocation);
 
-  // //TODO: check
-  // var overlay = new google.maps.OverlayView();
-  // let pane; //Added
-  // overlay.draw=function() {
-  //   this.getPanes().markerLayer.id='markerLayer';
-  //   pane = this.getPanes().overlayImage; //added
-  //   console.log(pane);
-    // alert(pane);
-  // };
-
-  overlay.setMap(map);
-
-  overlay.getPanes();
   //Defines then displays multiple markers on the map
   markerOptionsList = [ 
     {
@@ -68,6 +56,87 @@ function initMap() {
   ];
   //We wait for a few seconds before showing the markers on the map
   setTimeout(drop, 3300);
+
+
+  /**
+ * The custom USGSOverlay object contains the USGS image,
+ * the bounds of the image, and a reference to the map.
+ */
+  class UserPositionOverlay extends google.maps.OverlayView {
+    pos;
+    image;
+    div;
+    constructor(pos, image) {
+      super();
+      this.pos = pos;
+      this.image = image;
+    }
+
+    /**
+   * onAdd is called when the map's panes are ready and the overlay has been
+   * added to the map.
+   */
+    onAdd() {
+      this.div = document.createElement("div");
+      this.div.style.borderStyle = "none";
+      this.div.style.borderWidth = "0px";
+      this.div.style.position = "absolute";
+
+      // Create the img element and attach it to the div.
+      const img = document.createElement("img");
+
+      img.src = this.image;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.position = "absolute";
+      this.div.appendChild(img);
+
+      // Add the element to the "overlayLayer" pane.
+      const panes = this.getPanes();
+
+      panes.overlayLayer.appendChild(this.div);
+    }
+
+    /**
+   * The onRemove() method will be called automatically from the API if
+   * we ever set the overlay's map property to 'null'.
+   */
+    onRemove() {
+      if (this.div) {
+        this.div.parentNode.removeChild(this.div);
+        delete this.div;
+      }
+    }
+    /**
+   *  Set the visibility to 'hidden' or 'visible'.
+   */
+    hide() {
+      if (this.div) {
+        this.div.style.visibility = "hidden";
+      }
+    }
+    show() {
+      if (this.div) {
+        this.div.style.visibility = "visible";
+      }
+    }
+    toggle() {
+      if (this.div) {
+        if (this.div.style.visibility === "hidden") {
+          this.show();
+        } else {
+          this.hide();
+        }
+      }
+    }
+    toggleDOM(map) {
+      if (this.getMap()) {
+        this.setMap(null);
+      } else {
+        this.setMap(map);
+      }
+    }
+  }
 }
 
 
@@ -107,6 +176,7 @@ function showLocationInfo(marker, markerOptions){
 }
 
 function showCurrentLocation(){
+
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -119,9 +189,10 @@ function showCurrentLocation(){
         // infoWindow.setPosition(pos);
         // infoWindow.setContent("Votre position.");
         // infoWindow.open(map);
-        userLocationMarker.setPosition(pos);
-        userLocationMarker.setMap(map);
-        
+
+        // userLocationMarker.setPosition(pos);
+        // userLocationMarker.setMap(map);
+        userLocationMarker = new UserPositionOverlay(pos, "./images/user.png")
         map.setCenter(pos);
       },
       () => {
@@ -162,55 +233,6 @@ function getContentString(label){
   "</div>";
 }
 
-/**
- * The custom USGSOverlay object contains the USGS image,
- * the bounds of the image, and a reference to the map.
- */
- class UserPositionOverlay extends google.maps.OverlayView {
-  pos;
-  image;
-  div;
-  constructor(pos, image) {
-    super();
-    this.pos = pos;
-    this.image = image;
-  }
 
-  /**
- * onAdd is called when the map's panes are ready and the overlay has been
- * added to the map.
- */
-  onAdd() {
-    this.div = document.createElement("div");
-    this.div.style.borderStyle = "none";
-    this.div.style.borderWidth = "0px";
-    this.div.style.position = "absolute";
-
-    // Create the img element and attach it to the div.
-    const img = document.createElement("img");
-
-    img.src = this.image;
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.position = "absolute";
-    this.div.appendChild(img);
-
-    // Add the element to the "overlayLayer" pane.
-    const panes = this.getPanes();
-
-    panes.overlayLayer.appendChild(this.div);
-  }
-  
-  /**
- * The onRemove() method will be called automatically from the API if
- * we ever set the overlay's map property to 'null'.
- */
-onRemove() {
-  if (this.div) {
-    this.div.parentNode.removeChild(this.div);
-    delete this.div;
-  }
-}
-}
 
 window.initMap = initMap;
