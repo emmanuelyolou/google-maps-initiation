@@ -35,10 +35,10 @@ body {
 
 .user-position-img-wrapper{
   position: relative;
+  transform: translate(-50%, -50%);
 }
 .user-position-img-wrapper img{
-  width: 200px;
-  height: 200px;
+  width: 40px;
   display: block;
 }
 .user-position-img-wrapper::after{
