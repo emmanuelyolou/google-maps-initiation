@@ -86,7 +86,6 @@ function initMap() {
       const img = document.createElement("img");
 
       img.src = this.image;
-      img.style.position = "absolute";
 
       //Create a wrapper for the image to display the animation
       let userMarkerImgWrapper = document.createElement('div');
