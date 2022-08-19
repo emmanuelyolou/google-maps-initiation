@@ -13,21 +13,6 @@ function initMap() {
     maxWidth: 350
   });
 
-  // userLocationMarker = new google.maps.Marker({
-  //   icon: {
-  //     scaledSize: new google.maps.Size(32, 32),
-  //     url: "./images/user.png",
-  //   },
-  //     optimized: false,
-  //     animation: google.maps.Animation.DROP
-  //   // label: {
-  //   //   text: "e88a", // codepoint from https://fonts.google.com/icons
-  //   //   fontFamily: "Material Icons",
-  //   //   color: "#ffffff",
-  //   //   fontSize: "18px",
-  //   // }
-  // });
-
   //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
@@ -240,6 +225,51 @@ function initMap() {
     "</div>";
   }
 
+
+  // SECTION MATRIX DISTANCE
+
+  //The position of the Dimbokro's Agency
+  let origin = { lat: 6.6461292, lng: -4.7079362 };
+  //Divo agency coordinates
+  let destination = { lat: 5.8325039, lng: -5.3648169};
+
+  let matrixService = new google.maps.DistanceMatrixService();
+  matrixService.getDistanceMatrix(
+    {
+      origins: [ origin ],
+      destinations: [destination],
+      travelMode: 'DRIVING',
+      // transitOptions: TransitOptions,
+      // drivingOptions: DrivingOptions,
+      // unitSystem: UnitSystem,
+      // avoidHighways: Boolean,
+      // avoidTolls: Boolean,
+    }, distanceMatrixCallback);
+  
+  function distanceMatrixCallback(response1, response2){
+    console.log(response1, response2);
+  }
+
+  let directionService = new google.maps.DirectionsService();
+
+  directionService.route({
+    origin: origin,
+    destination: destination,
+    travelMode: 'DRIVING',
+    // transitOptions: TransitOptions,
+    // drivingOptions: DrivingOptions,
+    // unitSystem: UnitSystem,
+    // waypoints[]: DirectionsWaypoint,
+    // optimizeWaypoints: Boolean,
+    // provideRouteAlternatives: Boolean,
+    // avoidFerries: Boolean,
+    // avoidHighways: Boolean,
+    // avoidTolls: Boolean,
+    // region: String
+  },
+  function handleResponse(resp1, resp2){
+    console.log(resp1, resp2);
+  })
 }
 
 
