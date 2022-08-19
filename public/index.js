@@ -160,6 +160,57 @@ function getContentString(label){
   "(last visited June 22, 2009).</p>" +
   "</div>" +
   "</div>";
-} 
+}
+
+/**
+ * The custom USGSOverlay object contains the USGS image,
+ * the bounds of the image, and a reference to the map.
+ */
+ class UserPositionOverlay extends google.maps.OverlayView {
+  pos;
+  image;
+  div;
+  constructor(pos, image) {
+    super();
+    this.pos = pos;
+    this.image = image;
+  }
+
+  /**
+ * onAdd is called when the map's panes are ready and the overlay has been
+ * added to the map.
+ */
+  onAdd() {
+    this.div = document.createElement("div");
+    this.div.style.borderStyle = "none";
+    this.div.style.borderWidth = "0px";
+    this.div.style.position = "absolute";
+
+    // Create the img element and attach it to the div.
+    const img = document.createElement("img");
+
+    img.src = this.image;
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.position = "absolute";
+    this.div.appendChild(img);
+
+    // Add the element to the "overlayLayer" pane.
+    const panes = this.getPanes();
+
+    panes.overlayLayer.appendChild(this.div);
+  }
+  
+  /**
+ * The onRemove() method will be called automatically from the API if
+ * we ever set the overlay's map property to 'null'.
+ */
+onRemove() {
+  if (this.div) {
+    this.div.parentNode.removeChild(this.div);
+    delete this.div;
+  }
+}
+}
 
 window.initMap = initMap;
