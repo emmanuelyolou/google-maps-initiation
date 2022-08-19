@@ -32,18 +32,16 @@ body {
   vertical-align: middle;
   font-size: 1.7rem;
 }
-#markerLayer>div{
-  /*By default, parts of the marker may be hidden by an enclosing div*/
-  overflow: visible !important;
-}
-#markerLayer img[src="./images/user.png"]{
-  vertical-align: middle;
-}
 
-.user-location-img-wrapper{
+.user-position-img-wrapper{
   position: relative;
 }
-.user-location-img-wrapper::after{
+.user-position-img-wrapper img{
+  width: 200px;
+  height: 200px;
+  display: block;
+}
+.user-position-img-wrapper::after{
   content: '';
   position: absolute;
   top: 0;
