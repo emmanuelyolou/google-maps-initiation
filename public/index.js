@@ -16,9 +16,10 @@ function initMap() {
   userLocationMarker = new google.maps.Marker({
     icon: {
       scaledSize: new google.maps.Size(32, 32),
-      url: "./images/user.png"
+      url: "./images/user.png",
     },
-    animation: google.maps.Animation.DROP
+      optimized: false,
+      animation: google.maps.Animation.DROP
     // label: {
     //   text: "e88a", // codepoint from https://fonts.google.com/icons
     //   fontFamily: "Material Icons",
@@ -37,6 +38,19 @@ function initMap() {
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
   locationButton.addEventListener("click", showCurrentLocation);
 
+  // //TODO: check
+  // var overlay = new google.maps.OverlayView();
+  // let pane; //Added
+  // overlay.draw=function() {
+  //   this.getPanes().markerLayer.id='markerLayer';
+  //   pane = this.getPanes().overlayImage; //added
+  //   console.log(pane);
+    // alert(pane);
+  // };
+
+  overlay.setMap(map);
+
+  overlay.getPanes();
   //Defines then displays multiple markers on the map
   markerOptionsList = [ 
     {
@@ -107,6 +121,7 @@ function showCurrentLocation(){
         // infoWindow.open(map);
         userLocationMarker.setPosition(pos);
         userLocationMarker.setMap(map);
+        
         map.setCenter(pos);
       },
       () => {

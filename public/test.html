@@ -7,10 +7,47 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            vertical-align: middle;
+        }
+        .img-wrapper{
+            position: relative;
+        }
+        .img-wrapper::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 2px blue solid;
+            animation: drop-shadow-anim 1s ease-in 0s infinite normal ;
+        }
+        @keyframes drop-shadow-anim {
+            0%{
+                transform: scale(1);
+            }
+            100%{
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        div:has(img){
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <span class="material-icons">
-        my_location
-    </span>
+    
+    <div class="img-wrapper"><img src="./images/user.png" alt=""></div>
 </body>
 </html>

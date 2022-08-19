@@ -1,36 +1,65 @@
 /* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
- #map {
-    height: 90%;
-  }
-  
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .user-location-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: .2rem;
-    margin-right: 9px;
-    color: #666666;
-    cursor: pointer;
-  }
-  .user-location-icon{
-    vertical-align: middle;
-    font-size: 1.7rem;
-  }
+* Always set the map height explicitly to define the size of the div element
+* that contains the map. 
+*/
+#map {
+  height: 90%;
+}
 
-  
+/* 
+  * Optional: Makes the sample page fill the window. 
+  */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.user-location-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: .2rem;
+  margin-right: 9px;
+  color: #666666;
+  cursor: pointer;
+}
+.user-location-icon{
+  vertical-align: middle;
+  font-size: 1.7rem;
+}
+#markerLayer>div{
+  /*By default, parts of the marker may be hidden by an enclosing div*/
+  overflow: visible !important;
+}
+#markerLayer img[src="./images/user.png"]{
+  vertical-align: middle;
+}
+
+.user-location-img-wrapper{
+  position: relative;
+}
+.user-location-img-wrapper::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px blue solid;
+  animation: drop-shadow-anim 1s ease-in 0s infinite normal ;
+}
+@keyframes drop-shadow-anim {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(2);
+        opacity: 0;
+    }
+}
