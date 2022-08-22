@@ -27,7 +27,6 @@ function initMap() {
   
   //Defines then displays multiple markers on the map
   markerOptionsList = JSON.parse(readTextFile("./utb_agence.json"));
-  console.log(markerOptionsList[0]);
   //We wait for a few seconds before showing the markers on the map
   setTimeout(drop, 3300);
 
@@ -128,8 +127,8 @@ function initMap() {
         markerList.push(
           new google.maps.Marker({
             position: {
-              lat: parseFloat( markerOptionsList[i].latitude_agence),
-              lng: parseFloat(markerOptionsList[i].longitude_agence)
+              lat: markerOptionsList[i].latitude_agence,
+              lng: markerOptionsList[i].longitude_agence
             },
             map,
             animation: google.maps.Animation.DROP,
