@@ -2,6 +2,7 @@ import { readTextFile, setAttributes } from "./utils.js";
 import MarkerManager from "./marker_manager.js";
 import MapManager from "./map_manager.js";
 import UserPositionOverlay from './user_position_overlay.js'
+import MatrixHelper from "./matrix_helper.js";
 
 let userLocationMarker;
 (function initMap() {
@@ -50,12 +51,21 @@ let userLocationMarker;
     destinationInput.appendChild(destinationOption);
   });
 
+  let matrixHelper = new MatrixHelper(); 
   [originLocationInput, destinationInput].forEach( inputField => {
     inputField.addEventListener('change', () => {
-      // const originLocationInput = document.querySelector('.origin-location');
-      // const destinationInput = document.querySelector('.destination');
+      let selectedOriginAgency;
+      let selectedDestinationAgency;
+      
       if(originLocationInput.value != "0" && destinationInput.value != "0" ){
-        alert('tout est zo');
+        selectedOriginAgency = 
+          markerManager.agencyList.filter(agency => agency.id_agence == originLocationInput.value)[0];
+        selectedDestinationAgency = 
+          markerManager.agencyList.filter(agency => agency.id_agence == destinationInput.value)[0];
+        matrixHelper.getDistanceMatrix(
+          { lat: selectedOriginAgency.latitude_agence, lng: selectedOriginAgency.longitude_agence },
+          { lat: selectedDestinationAgency.latitude_agence, lng: selectedDestinationAgency.longitude_agence }
+        );
       }
     });
   });
@@ -102,48 +112,25 @@ let userLocationMarker;
   }
 
   
-  // SECTION MATRIX DISTANCE
-
-  //The position of the Dimbokro's Agency
-  let origin = { lat: 6.6461292, lng: -4.7079362 };
-  //Divo agency coordinates
-  let destination = { lat: 5.8325039, lng: -5.3648169};
-
-  let matrixService = new google.maps.DistanceMatrixService();
-  matrixService.getDistanceMatrix(
-    {
-      origins: [ origin ],
-      destinations: [destination],
-      travelMode: 'DRIVING',
-      // transitOptions: TransitOptions,
-      // drivingOptions: DrivingOptions,
-      // unitSystem: UnitSystem,
-      // avoidHighways: Boolean,
-      // avoidTolls: Boolean,
-    }, distanceMatrixCallback);
   
-  function distanceMatrixCallback(response1, response2){
-    // console.log(response1, response2);
-  }
+  // let directionService = new google.maps.DirectionsService();
 
-  let directionService = new google.maps.DirectionsService();
-
-  directionService.route({
-    origin: origin,
-    destination: destination,
-    travelMode: 'DRIVING',
-    // transitOptions: TransitOptions,
-    // drivingOptions: DrivingOptions,
-    // unitSystem: UnitSystem,
-    // waypoints[]: DirectionsWaypoint,
-    // optimizeWaypoints: Boolean,
-    // provideRouteAlternatives: Boolean,
-    // avoidFerries: Boolean,
-    // avoidHighways: Boolean,
-    // avoidTolls: Boolean,
-    // region: String
-  },
-  function handleResponse(resp1, resp2){
-    // console.log(resp1, resp2);
-  })
+  // directionService.route({
+  //   origin: origin,
+  //   destination: destination,
+  //   travelMode: 'DRIVING',
+  //   // transitOptions: TransitOptions,
+  //   // drivingOptions: DrivingOptions,
+  //   // unitSystem: UnitSystem,
+  //   // waypoints[]: DirectionsWaypoint,
+  //   // optimizeWaypoints: Boolean,
+  //   // provideRouteAlternatives: Boolean,
+  //   // avoidFerries: Boolean,
+  //   // avoidHighways: Boolean,
+  //   // avoidTolls: Boolean,
+  //   // region: String
+  // },
+  // function handleResponse(resp1, resp2){
+  //   // console.log(resp1, resp2);
+  // })
 })();
