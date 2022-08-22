@@ -24,22 +24,10 @@ function initMap() {
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
   locationButton.addEventListener("click", showCurrentLocation);
-  console.log(readTextFile("./utb_agence.json"));
+  
   //Defines then displays multiple markers on the map
-  markerOptionsList = [ 
-    {
-        position: { lat: 6.6461292, lng: -4.7079362}, //Dimbokro
-        title: "Dimbokro",
-    },
-    {
-        position: { lat: 6.9282028, lng: -6.0334362}, //Bonon
-        title: "Utb express",
-    },
-    {
-        position: { lat: 5.8325039, lng: -5.3648169}, //Divo
-        title: "Utb-Divo",
-    },
-  ];
+  markerOptionsList = JSON.parse(readTextFile("./utb_agence.json"));
+  console.log(markerOptionsList[0]);
   //We wait for a few seconds before showing the markers on the map
   setTimeout(drop, 3300);
 
@@ -139,7 +127,10 @@ function initMap() {
       setTimeout(() => {
         markerList.push(
           new google.maps.Marker({
-            position: markerOptionsList[i].position,
+            position: {
+              lat: markerOptionsList[i].latitude_agence,
+              lng: markerOptionsList[i].longitude_agence
+            },
             map,
             animation: google.maps.Animation.DROP,
           })
@@ -158,7 +149,7 @@ function initMap() {
 
   function showLocationInfo(marker, markerOptions){
     {
-      infoWindow.setContent(getContentString(markerOptions.title));
+      infoWindow.setContent(getContentString(markerOptions.name_agence));
       infoWindow.open({
         anchor: marker,
         map,
