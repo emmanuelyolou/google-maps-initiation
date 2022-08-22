@@ -1,7 +1,8 @@
 export default class MapManager{
-    static map;
-    static mapOptions;
-    static infoWindow;
+    map;
+    mapOptions;
+    infoWindow;
+    locationButton;
 
     constructor(){
         this.initMap();
@@ -18,6 +19,7 @@ export default class MapManager{
             this.infoWindow = new google.maps.InfoWindow({
                 maxWidth: 350
             });
+            this.initLocationButton();
         }
     }
     initInfoWindow ()  {
@@ -44,6 +46,21 @@ export default class MapManager{
             map,
             shouldFocus: false,
         });
+    }
+    initLocationButton(){
+        //Creation of the location button control
+        const locationButton = document.createElement("button");
+        const locationIcon = document.createElement("span");
+        locationButton.classList.add("user-location-btn");
+        locationIcon.classList.add("material-icons", "user-location-icon");
+        locationIcon.textContent = "my_location";
+        locationButton.appendChild(locationIcon);
+        this.locationButton = locationButton;
+        this.addControl(locationButton, google.maps.ControlPosition.RIGHT_BOTTOM);
+    }
+
+    addControl(control, position){
+        this.map.controls[position].push(control);
     }
     
 }
