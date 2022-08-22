@@ -1,0 +1,234 @@
+[
+    {
+        "id_agence": "001",
+        "name_agence": "Abobo",
+        "latitude_agence": "5.4409634",
+        "longitude_agence": "-4.0450266",
+        "localite_agence": "Abobo",
+        "adres_agence": "En face du village d'Anokoua Kouté à côté de la pharmacie BSK",
+        "responsable_agence": "",
+        "contact_agence": "0506182921"
+
+    },
+    {
+        "id_agence": "002",
+        "name_agence": "Adjamé",
+        "latitude_agence": "5.3518351",
+        "longitude_agence": "-4.024296",
+        "localite_agence": "Adjamé",
+        "adres_agence": "A Renault au sein de la gare routière d'UTB",
+        "responsable_agence": "",
+        "contact_agence": "0585095284,0506182894"
+
+    },
+    {
+        "id_agence": "003",
+        "name_agence": "Béoumi",
+        "latitude_agence": "7.6722407",
+        "longitude_agence": "-5.5856642",
+        "localite_agence": "Béoumi",
+        "adres_agence": "En bordure de route à côté de la station shell en allant à Kounahiri (à 500m de la brigade de gendarmerie)",
+        "responsable_agence": "",
+        "contact_agence": "05"
+
+    },
+    {
+        "id_agence": "004",
+        "name_agence": "Bonon",
+        "latitude_agence": "6.9291332",
+        "longitude_agence": "-6.035899,",
+        "localite_agence": "Bonon",
+        "adres_agence": "Situé après le Lycée Moderne de Bonon en bordure de route",
+        "responsable_agence": "",
+        "contact_agence": "0506182896,0504587617"
+
+    },
+    {
+        "id_agence": "005",
+        "name_agence": "Bouaflé",
+        "latitude_agence": "6.9818981",
+        "longitude_agence": "-5.7524543,",
+        "localite_agence": "Bouaflé",
+        "adres_agence": "Au commerce à côté de la station ESSENCI",
+        "responsable_agence": "",
+        "contact_agence": "0506182917"
+
+    },
+    {
+        "id_agence": "006",
+        "name_agence": "Bouaké",
+        "latitude_agence": "7.6876711",
+        "longitude_agence": "-5.0285448",
+        "localite_agence": "Bouaké",
+        "adres_agence": "Au quartier Commerce, entre la Cathédrale et la pharmacie Notre Dame de la Paix",
+        "responsable_agence": "",
+        "contact_agence": "0506182902,0506044360"
+
+    },
+    {
+        "id_agence": "007",
+        "name_agence": "Botro",
+        "latitude_agence": "7.8493796",
+        "longitude_agence": "-5.3112805",
+        "localite_agence": "Botro",
+        "adres_agence": "A l'entrée de la villen derrière la Cathédrale",
+        "responsable_agence": "",
+        "contact_agence": "0565368233"
+
+    },
+    {
+        "id_agence": "008",
+        "name_agence": "Daloa", 
+        "latitude_agence": "6.8863227",
+        "longitude_agence": "-6.9748016",
+        "localite_agence": "Daloa",
+        "adres_agence": "Au quartier Commerce en face de la station Corlay",
+        "responsable_agence": "",
+        "contact_agence": "0506182916"
+
+    },
+    {
+        "id_agence": "009",
+        "name_agence": "Dimbokro",
+        "latitude_agence": "6.6461345",
+        "longitude_agence": "4.7099747",
+        "localite_agence": "Dimbokro",
+        "adres_agence": "Non loin du marché",
+        "responsable_agence": "",
+        "contact_agence": "0574857009"
+
+    },
+    {
+        "id_agence": "010",
+        "name_agence": "Divo",
+        "latitude_agence": "5.8329493",
+        "longitude_agence": "-5.3667367",
+        "localite_agence": "Divo",
+        "adres_agence": "En provenance d'Abidjan, sur la gauche en bordure de route après la station Corlay",
+        "responsable_agence": "",
+        "contact_agence": "0506182903"
+
+    },
+    {
+        "id_agence": "011",
+        "name_agence": "Guiberoua",
+        "latitude_agence": "6.2360382",
+        "longitude_agence": "-6.1742137",
+        "localite_agence": "Guiberoua",
+        "adres_agence": "La rue du Commssariat, Quartier Commerce",
+        "responsable_agence": "",
+        "contact_agence": "0566905378"
+
+    },
+    {
+        "id_agence": "012",
+        "name_agence": "Duekoué",
+        "latitude_agence": "6.7454356",
+        "longitude_agence": "-7.3455834",
+        "localite_agence": "Duekoué",
+        "adres_agence": "A côté du grand marché en fac de la banque NSIA",
+        "responsable_agence": "",
+        "contact_agence": "0504003935"
+
+    },
+    {
+        "id_agence": "013",
+        "name_agence": "Gabiagui",
+        "latitude_agence": "5.0163209",
+        "longitude_agence": "-6.5638268",
+        "localite_agence": "Gabiagui",
+        "adres_agence": "En bordure de route près de la station d'essence",
+        "responsable_agence": "",
+        "contact_agence": "0506351353"
+
+    },
+    {
+        "id_agence": "014",
+        "name_agence": "Gagnoa",
+        "latitude_agence": "6.126072",
+        "longitude_agence": "-5.9498478",
+        "localite_agence": "Gagnoa",
+        "adres_agence": "Quartier Commerce en allant à Soubré",
+        "responsable_agence": "",
+        "contact_agence": "0506182913"
+
+    },
+    {
+        "id_agence": "015",
+        "name_agence": "Gonaté",
+        "latitude_agence": "6.905609",
+        "longitude_agence": "-6.2457874,",
+        "localite_agence": "Gonaté",
+        "adres_agence": "A 20 Km de la ville de Daloa au vord de la route",
+        "responsable_agence": "",
+        "contact_agence": "0506252685,0505959400"
+
+    },
+    {
+        "id_agence": "016",
+        "name_agence": "Guessabo",
+        "latitude_agence": "6.7319606",
+        "longitude_agence": "-6.9648646",
+        "localite_agence": "Guessabo",
+        "adres_agence": "Ancienne pharmacie de Guessabon en face de la boulangerie CEMAO",
+        "responsable_agence": "",
+        "contact_agence": "0545973212"
+
+    },
+    {
+        "id_agence": "017",
+        "name_agence": "Hiré",
+        "latitude_agence": "6.188352",
+        "longitude_agence": "-5.2981214",
+        "localite_agence": "Hiré",
+        "adres_agence": "Quartier Commerce, en face du supermarché Tabitha",
+        "responsable_agence": "",
+        "contact_agence": "0574857010"
+
+    },
+    {
+        "id_agence": "018",
+        "name_agence": "Issia",
+        "latitude_agence": "6.4828942",
+        "longitude_agence": "6.4828942",
+        "localite_agence": "Issia",
+        "adres_agence": "A l'angle de la station TOTAL de Issia sur la voie principale",
+        "responsable_agence": "",
+        "contact_agence": "0544332228"
+
+    },
+    {
+        "id_agence": "019",
+        "name_agence": "Koumassi",
+        "latitude_agence": "5.2984955",
+        "longitude_agence": "-3.9491756",
+        "localite_agence": "Koumassi",
+        "adres_agence": "En zone industrielle de Koumassi à 100m du garage Akwaba",
+        "responsable_agence": "",
+        "contact_agence": "0574857010"
+
+    },
+    {
+        "id_agence": "020",
+        "name_agence": "Ligne Inter Adjamé",
+        "latitude_agence": "5.3518351",
+        "longitude_agence": "-4.024296",
+        "localite_agence": "Ligne Inter Adjamé",
+        "adres_agence": "Au sein de la Gare Internationale d'Adjamé Renault",
+        "responsable_agence": "",
+        "contact_agence": "0556978887,0506182911"
+
+    },
+    {
+        "id_agence": "021",
+        "name_agence": "Ligne Inter Gonzaqueville",
+        "latitude_agence": "5.239897",
+        "longitude_agence": "-3.8987669",
+        "localite_agence": "Ligne Inter Gonzaqueville",
+        "adres_agence": "Au corridor de Gonzaqueville à 200m du 24e arrondissement de police de Port-bouet",
+        "responsable_agence": "",
+        "contact_agence": "0574885988"
+
+    }
+    
+]
