@@ -69,3 +69,11 @@ body {
       opacity: 0;
     }
 }
+
+.location-input{
+  outline: none;
+  width: 10rem;
+  padding: .3rem;
+  margin: 1rem 0 0 1rem;
+  border-radius: .4rem;
+}

@@ -5,7 +5,7 @@ let infoWindow;
 let userLocationMarker;
 let markerList = [];
 let agencyList = [];
-function initMap() {
+(function initMap() {
   let mapOptions = {
     center: { lat: 5.8325039, lng: -5.3648169},
     zoom: 8
@@ -22,10 +22,10 @@ function initMap() {
   locationIcon.textContent = "my_location";
   locationButton.appendChild(locationIcon);
 
-  const originLocationInput = document.createElement("input");
-  const destinationInput = document.createElement("input");
-  originLocationInput.classList.add('origin-location-input')
-  destinationInput.classList.add('destination-input');
+  const originLocationInput = document.createElement("select");
+  const destinationInput = document.createElement("select");
+  originLocationInput.classList.add('location-input',)
+  destinationInput.classList.add('location-input',);
   destinationInput.setAttribute('placeholder', "Destination");
   originLocationInput.setAttribute('placeholder', "Départ");
 
@@ -265,8 +265,4 @@ function initMap() {
   function handleResponse(resp1, resp2){
     // console.log(resp1, resp2);
   })
-}
-
-
-
-window.initMap = initMap;
+})();
