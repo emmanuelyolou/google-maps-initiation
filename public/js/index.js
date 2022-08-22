@@ -1,19 +1,13 @@
 import { readTextFile } from "./utils.js";
+import MarkerManager from "./marker_manager.js";
+import MapManager from "./map_manager.js";
 
-let map;
-let infoWindow;
 let userLocationMarker;
-let markerList = [];
-let agencyList = [];
 (function initMap() {
-  let mapOptions = {
-    center: { lat: 5.8325039, lng: -5.3648169},
-    zoom: 8
-  };
-  map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  infoWindow = new google.maps.InfoWindow({
-    maxWidth: 350
-  });
+  let mapManager = new MapManager();
+  let map = mapManager.getMap();
+  let infoWindow = mapManager.getInfoWindow();
+  
   //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
@@ -34,10 +28,12 @@ let agencyList = [];
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(destinationInput);
   locationButton.addEventListener("click", showCurrentLocation);
   
+  let markerManager = new MarkerManager(map);
   //Defines then displays multiple markers on the map
-  agencyList = JSON.parse(readTextFile("./utb_agence.json"));
+  markerManager.agencyList = JSON.parse(readTextFile("./utb_agence.json"));
   //We wait for a few seconds before showing the markers on the map
-  setTimeout(drop, 3300);
+  // setTimeout(markerManager.drop(map), 3300);
+  markerManager.drop(map);
 
 
   /**
@@ -127,45 +123,7 @@ let agencyList = [];
       }
     }
   }
-  
-  function drop(){
-    clearMarkerList();
-    //The display of each marker is delayed in relation to the next marker
-    for (let i = 0; i < agencyList.length; i++) {
-      setTimeout(() => {
-        markerList.push(
-          new google.maps.Marker({
-            position: {
-              lat: agencyList[i].latitude_agence,
-              lng: agencyList[i].longitude_agence
-            },
-            map,
-            animation: google.maps.Animation.DROP,
-          })
-        );
-        markerList[i].addListener("click", () => showLocationInfo(markerList[i], agencyList[i]));
-      }, i * 300 );
-    }
-  }
-
-  function clearMarkerList() {
-    for (let i = 0; i < markerList.length; i++) {
-      markerList[i].setMap(null);
-    }
-    markerList = [];
-  }
-
-  function showLocationInfo(marker, agency){
-    {
-      infoWindow.setContent(getContentString(agency));
-      infoWindow.open({
-        anchor: marker,
-        map,
-        shouldFocus: false,
-      });
-    }
-  }
-
+ 
   function showCurrentLocation(){
 
     // Try HTML5 geolocation.
@@ -242,7 +200,7 @@ let agencyList = [];
     }, distanceMatrixCallback);
   
   function distanceMatrixCallback(response1, response2){
-    console.log(response1, response2);
+    // console.log(response1, response2);
   }
 
   let directionService = new google.maps.DirectionsService();
