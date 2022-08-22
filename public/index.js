@@ -22,7 +22,16 @@ function initMap() {
   locationIcon.textContent = "my_location";
   locationButton.appendChild(locationIcon);
 
+  const originLocationInput = document.createElement("input");
+  const destinationInput = document.createElement("input");
+  originLocationInput.classList.add('origin-location-input')
+  destinationInput.classList.add('destination-input');
+  destinationInput.setAttribute('placeholder', "Destination");
+  originLocationInput.setAttribute('placeholder', "Départ");
+
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(originLocationInput);
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(destinationInput);
   locationButton.addEventListener("click", showCurrentLocation);
   
   //Defines then displays multiple markers on the map
@@ -233,7 +242,7 @@ function initMap() {
     }, distanceMatrixCallback);
   
   function distanceMatrixCallback(response1, response2){
-    // console.log(response1, response2);
+    console.log(response1, response2);
   }
 
   let directionService = new google.maps.DirectionsService();
