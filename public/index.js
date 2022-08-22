@@ -128,8 +128,8 @@ function initMap() {
         markerList.push(
           new google.maps.Marker({
             position: {
-              lat: markerOptionsList[i].latitude_agence,
-              lng: markerOptionsList[i].longitude_agence
+              lat: parseFloat( markerOptionsList[i].latitude_agence),
+              lng: parseFloat(markerOptionsList[i].longitude_agence)
             },
             map,
             animation: google.maps.Animation.DROP,
