@@ -8,17 +8,20 @@ let userLocationMarker;
   let mapManager = new MapManager();
   let map = mapManager.getMap();
   let infoWindow = mapManager.getInfoWindow();
-  
+    
+  mapManager.locationButton.addEventListener("click", showCurrentLocation);
+
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
+
+  //Default selected options 
   const originPlaceholder = document.createElement("option");
-  originPlaceholder.value=""
   const destinationPlaceholder = document.createElement("option");
 
   originLocationInput.classList.add('location-input',)
+  //Default text and values for the select tags
   originPlaceholder.innerHTML = "Choisissez un départ";
   destinationPlaceholder.innerHTML = "Choisissez une destination";
-
   destinationInput.classList.add('location-input',);
   originPlaceholder.setAttribute("value", "0")
   destinationPlaceholder.setAttribute('value', "0");
@@ -26,13 +29,27 @@ let userLocationMarker;
   originLocationInput.appendChild(originPlaceholder);
   destinationInput.appendChild(destinationPlaceholder);
 
-  mapManager.locationButton.addEventListener("click", showCurrentLocation);
   mapManager.addControl(originLocationInput, google.maps.ControlPosition.LEFT_TOP)
   mapManager.addControl(destinationInput, google.maps.ControlPosition.LEFT_TOP)
   
   let markerManager = new MarkerManager(map);
   //Defines then displays multiple markers on the map
   markerManager.agencyList = JSON.parse(readTextFile("./utb_agence.json"));
+
+  markerManager.agencyList.forEach(agency => {
+    //Append the agency as an entry in the origin location list
+    let originOption = document.createElement("option");
+    originOption.innerHTML = agency.name_agence;
+    originOption.setAttribute('value', agency.id_agence);
+    originLocationInput.appendChild(originOption);
+
+    //Append the agency as an entry in the origin location list
+    let destinationOption = document.createElement("option");
+    destinationOption.innerHTML = agency.name_agence;
+    destinationOption.setAttribute('value', agency.id_agence);
+    destinationInput.appendChild(destinationOption);
+  });
+
   //We wait for a few seconds before showing the markers on the map
   // setTimeout(markerManager.drop(map), 3300);
   markerManager.drop(mapManager);
