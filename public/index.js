@@ -1,3 +1,5 @@
+import { readTextFile } from "./utils.js";
+
 let map;
 let infoWindow;
 let userLocationMarker;
@@ -12,7 +14,6 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow({
     maxWidth: 350
   });
-
   //Creation of the location button control
   const locationButton = document.createElement("button");
   const locationIcon = document.createElement("span");
@@ -23,7 +24,7 @@ function initMap() {
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
   locationButton.addEventListener("click", showCurrentLocation);
-
+  console.log(readTextFile("./utb_agence.json"));
   //Defines then displays multiple markers on the map
   markerOptionsList = [ 
     {
@@ -247,7 +248,7 @@ function initMap() {
     }, distanceMatrixCallback);
   
   function distanceMatrixCallback(response1, response2){
-    console.log(response1, response2);
+    // console.log(response1, response2);
   }
 
   let directionService = new google.maps.DirectionsService();
@@ -268,7 +269,7 @@ function initMap() {
     // region: String
   },
   function handleResponse(resp1, resp2){
-    console.log(resp1, resp2);
+    // console.log(resp1, resp2);
   })
 }
 
