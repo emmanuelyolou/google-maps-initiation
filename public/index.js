@@ -4,7 +4,7 @@ let map;
 let infoWindow;
 let userLocationMarker;
 let markerList = [];
-let markerOptionsList = [];
+let agencyList = [];
 function initMap() {
   let mapOptions = {
     center: { lat: 5.8325039, lng: -5.3648169},
@@ -26,7 +26,7 @@ function initMap() {
   locationButton.addEventListener("click", showCurrentLocation);
   
   //Defines then displays multiple markers on the map
-  markerOptionsList = JSON.parse(readTextFile("./utb_agence.json"));
+  agencyList = JSON.parse(readTextFile("./utb_agence.json"));
   //We wait for a few seconds before showing the markers on the map
   setTimeout(drop, 3300);
 
@@ -122,19 +122,19 @@ function initMap() {
   function drop(){
     clearMarkerList();
     //The display of each marker is delayed in relation to the next marker
-    for (let i = 0; i < markerOptionsList.length; i++) {
+    for (let i = 0; i < agencyList.length; i++) {
       setTimeout(() => {
         markerList.push(
           new google.maps.Marker({
             position: {
-              lat: markerOptionsList[i].latitude_agence,
-              lng: markerOptionsList[i].longitude_agence
+              lat: agencyList[i].latitude_agence,
+              lng: agencyList[i].longitude_agence
             },
             map,
             animation: google.maps.Animation.DROP,
           })
         );
-        markerList[i].addListener("click", () => showLocationInfo(markerList[i], markerOptionsList[i]));
+        markerList[i].addListener("click", () => showLocationInfo(markerList[i], agencyList[i]));
       }, i * 300 );
     }
   }
@@ -146,9 +146,9 @@ function initMap() {
     markerList = [];
   }
 
-  function showLocationInfo(marker, markerOptions){
+  function showLocationInfo(marker, agency){
     {
-      infoWindow.setContent(getContentString(markerOptions.name_agence));
+      infoWindow.setContent(getContentString(agency));
       infoWindow.open({
         anchor: marker,
         map,
@@ -200,18 +200,13 @@ function initMap() {
   }
 
     
-  function getContentString(label){
+  function getContentString(agency){
     return  '<div id="content">' +
     '<div id="siteNotice">' +
     "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">' + label + '</h1>' +
+    '<h1 id="firstHeading" class="firstHeading">' + agency.name_agence + '</h1>' +
     '<div id="bodyContent">' +
-    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-    "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-    "(last visited June 22, 2009).</p>" +
+    "<p>" + agency.adres_agence + "</p>" +
     "</div>" +
     "</div>";
   }
