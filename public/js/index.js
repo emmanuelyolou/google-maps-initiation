@@ -18,11 +18,11 @@ let userLocationMarker;
   const originPlaceholder = document.createElement("option");
   const destinationPlaceholder = document.createElement("option");
 
-  originLocationInput.classList.add('location-input',)
+  originLocationInput.classList.add('location-input', 'origin-location')
   //Default text and values for the select tags
   originPlaceholder.innerHTML = "Choisissez un départ";
   destinationPlaceholder.innerHTML = "Choisissez une destination";
-  destinationInput.classList.add('location-input',);
+  destinationInput.classList.add('location-input', 'destination');
   originPlaceholder.setAttribute("value", "0")
   destinationPlaceholder.setAttribute('value', "0");
 
@@ -48,6 +48,16 @@ let userLocationMarker;
     destinationOption.innerHTML = agency.name_agence;
     destinationOption.setAttribute('value', agency.id_agence);
     destinationInput.appendChild(destinationOption);
+  });
+
+  [originLocationInput, destinationInput].forEach( inputField => {
+    inputField.addEventListener('change', () => {
+      // const originLocationInput = document.querySelector('.origin-location');
+      // const destinationInput = document.querySelector('.destination');
+      if(originLocationInput.value != "0" && destinationInput.value != "0" ){
+        alert('tout est zo');
+      }
+    });
   });
 
   //We wait for a few seconds before showing the markers on the map
