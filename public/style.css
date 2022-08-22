@@ -72,8 +72,8 @@ body {
 
 .location-input{
   outline: none;
-  width: 10rem;
-  padding: .3rem;
+  width: 13rem;
+  padding: .5rem;
   margin: 1rem 0 0 1rem;
   border-radius: .4rem;
 }

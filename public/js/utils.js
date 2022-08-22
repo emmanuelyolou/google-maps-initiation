@@ -16,3 +16,10 @@ export function readTextFile(file)
     rawFile.send(null);
     return result;
 }
+
+export function setAttributes(element, attributes) {
+    Object.keys(attributes).forEach(attr => {
+      element.setAttribute(attr, attributes[attr]);
+    });
+  }
+  

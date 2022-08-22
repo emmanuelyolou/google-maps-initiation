@@ -1,4 +1,4 @@
-import { readTextFile } from "./utils.js";
+import { readTextFile, setAttributes } from "./utils.js";
 import MarkerManager from "./marker_manager.js";
 import MapManager from "./map_manager.js";
 import UserPositionOverlay from './user_position_overlay.js'
@@ -11,14 +11,24 @@ let userLocationMarker;
   
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
-  originLocationInput.classList.add('location-input',)
-  destinationInput.classList.add('location-input',);
-  destinationInput.setAttribute('placeholder', "Destination");
-  originLocationInput.setAttribute('placeholder', "Départ");
+  const originPlaceholder = document.createElement("option");
+  originPlaceholder.value=""
+  const destinationPlaceholder = document.createElement("option");
 
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(originLocationInput);
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(destinationInput);
+  originLocationInput.classList.add('location-input',)
+  originPlaceholder.innerHTML = "Choisissez un départ";
+  destinationPlaceholder.innerHTML = "Choisissez une destination";
+
+  destinationInput.classList.add('location-input',);
+  originPlaceholder.setAttribute("value", "0")
+  destinationPlaceholder.setAttribute('value', "0");
+
+  originLocationInput.appendChild(originPlaceholder);
+  destinationInput.appendChild(destinationPlaceholder);
+
   mapManager.locationButton.addEventListener("click", showCurrentLocation);
+  mapManager.addControl(originLocationInput, google.maps.ControlPosition.LEFT_TOP)
+  mapManager.addControl(destinationInput, google.maps.ControlPosition.LEFT_TOP)
   
   let markerManager = new MarkerManager(map);
   //Defines then displays multiple markers on the map
