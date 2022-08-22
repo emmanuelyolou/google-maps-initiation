@@ -9,7 +9,7 @@ export default class MarkerManager{
       this.agencyList = [];
   }
      
-  drop = (map) => {
+  drop = (mapManager) => {
     this.clearMarkerList();
     //The display of each marker is delayed in relation to the next marker
     for (let i = 0; i < this.agencyList.length; i++) {
@@ -20,12 +20,13 @@ export default class MarkerManager{
               lat: this.agencyList[i].latitude_agence,
               lng: this.agencyList[i].longitude_agence
             },
-            map,
+            map: mapManager.getMap(),
             animation: google.maps.Animation.DROP,
           })
         );
-          this.markerList[i].setMap(map);
-        this.markerList[i].addListener("click", () => this.showLocationInfo(this.markerList[i], this.agencyList[i]));
+        this.markerList[i].addListener("click", () => {
+          mapManager.showLocationInfo( this.markerList[i], this.getContentString( this.agencyList[i] ))
+        });
       }, i * 300 );
     }
   }
@@ -37,15 +38,16 @@ export default class MarkerManager{
     this.markerList = [];
   }
 
-  showLocationInfo(marker, agency){
-    {
-      infoWindow.setContent(getContentString(agency));
-      infoWindow.open({
-        anchor: marker,
-        map,
-        shouldFocus: false,
-      });
-    }
+  getContentString = (agency) => {
+    return  '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">' + agency.name_agence + '</h1>' +
+    '<div id="bodyContent">' +
+    "<p>" + agency.adres_agence + "</p>" +
+    "</div>" +
+    "</div>";
   }
+
 
 }

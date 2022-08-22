@@ -33,7 +33,7 @@ let userLocationMarker;
   markerManager.agencyList = JSON.parse(readTextFile("./utb_agence.json"));
   //We wait for a few seconds before showing the markers on the map
   // setTimeout(markerManager.drop(map), 3300);
-  markerManager.drop(map);
+  markerManager.drop(mapManager);
 
 
   /**
@@ -166,19 +166,7 @@ let userLocationMarker;
     infoWindow.open(map);
   }
 
-    
-  function getContentString(agency){
-    return  '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">' + agency.name_agence + '</h1>' +
-    '<div id="bodyContent">' +
-    "<p>" + agency.adres_agence + "</p>" +
-    "</div>" +
-    "</div>";
-  }
-
-
+  
   // SECTION MATRIX DISTANCE
 
   //The position of the Dimbokro's Agency

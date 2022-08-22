@@ -2,11 +2,12 @@ export default class MapManager{
     static map;
     static mapOptions;
     static infoWindow;
+
     constructor(){
         this.initMap();
     }
     
-    initMap = () => {
+    initMap () {
         if(this.map === undefined){
             this.mapOptions = {
                 center: { lat: 5.8325039, lng: -5.3648169},
@@ -19,21 +20,30 @@ export default class MapManager{
             });
         }
     }
-    initInfoWindow = () => {
+    initInfoWindow ()  {
         if(this.infoWindow === undefined){
-            infoWindow = new google.maps.InfoWindow({
+            this.infoWindow = new google.maps.InfoWindow({
                 maxWidth: 350
             });
         }
     }
     
-    getMap = () => {
+    getMap ()  {
         this.initMap();
         return this.map;
     }
-    getInfoWindow = () => {
+    getInfoWindow () {
         this.initInfoWindow();
         return this.infoWindow;
+    }
+  
+    showLocationInfo(marker, content){
+        this.infoWindow.setContent(content);
+        this.infoWindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+        });
     }
     
 }
