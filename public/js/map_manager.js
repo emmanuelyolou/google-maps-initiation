@@ -1,3 +1,5 @@
+import UserPositionOverlay from './user_position_overlay.js'
+
 export default class MapManager{
     map;
     mapOptions;
@@ -81,7 +83,7 @@ export default class MapManager{
                     };
             
                     this.userLocationMarker = new UserPositionOverlay(pos, "./images/user.png")
-                    this.userLocationMarker.setMap(map)
+                    this.userLocationMarker.setMap(this.map)
                     this.map.setCenter(pos);
                     },
                     () => {

@@ -1,7 +1,6 @@
 import { readTextFile, setAttributes } from "./utils.js";
 import MarkerManager from "./marker_manager.js";
 import MapManager from "./map_manager.js";
-import UserPositionOverlay from './user_position_overlay.js'
 import MatrixHelper from "./matrix_helper.js";
 import { DirectionsHelper } from "./directions_helper.js";
 
