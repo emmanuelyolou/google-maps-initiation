@@ -75,6 +75,9 @@ let userLocationMarker;
           }
         );
       }
+      else{
+        routeInfoInput.value = "";
+      }
     });
   });
 
