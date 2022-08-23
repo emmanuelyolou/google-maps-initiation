@@ -83,6 +83,7 @@ body {
 }
 .location-input{
   width: var(--input-width);
+  display: block;
 }
 .route-info{
   width: calc( var(--input-width) - 1rem);

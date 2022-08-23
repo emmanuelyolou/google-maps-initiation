@@ -7,7 +7,10 @@ import { DirectionsHelper } from "./directions_helper.js";
 (function initMap() {
   let mapManager = new MapManager();
   let map = mapManager.getMap();
-    
+
+  const locationControlsWrapper = document.createElement("div");
+  locationControlsWrapper.classList.add("location-controls-wrapper");
+  
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
   //For the display of info about the route
@@ -29,9 +32,10 @@ import { DirectionsHelper } from "./directions_helper.js";
   originLocationInput.appendChild(originPlaceholder);
   destinationInput.appendChild(destinationPlaceholder);
 
-  mapManager.addControl(originLocationInput, google.maps.ControlPosition.LEFT_TOP);
-  mapManager.addControl(destinationInput, google.maps.ControlPosition.LEFT_TOP);
-  mapManager.addControl(routeInfoInput, google.maps.ControlPosition.LEFT_TOP);
+  locationControlsWrapper.appendChild(originLocationInput);
+  locationControlsWrapper.appendChild(destinationInput);
+  locationControlsWrapper.appendChild(routeInfoInput);
+  mapManager.addControl(locationControlsWrapper, google.maps.ControlPosition.LEFT_TOP);
   
   let markerManager = new MarkerManager(map);
   //Defines then displays multiple markers on the map
