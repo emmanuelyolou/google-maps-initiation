@@ -14,6 +14,7 @@ let userLocationMarker;
 
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
+  //For the display of info about the route
   const routeInfoInput = document.createElement("textarea");
 
   originLocationInput.classList.add('location-input', 'origin-location')
@@ -69,7 +70,8 @@ let userLocationMarker;
           { lat: selectedOriginAgency.latitude_agence, lng: selectedOriginAgency.longitude_agence},
           { lat: selectedDestinationAgency.latitude_agence, lng: selectedDestinationAgency.longitude_agence },
           function(response){ 
-            console.log(response);
+            routeInfoInput.value = "Distance: " + response.distance.text;
+            // routeDistanceInfo.innerHTML +
           }
         );
       }
