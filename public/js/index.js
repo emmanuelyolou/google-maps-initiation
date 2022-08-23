@@ -11,8 +11,6 @@ let userLocationMarker;
   let map = mapManager.getMap();
   let infoWindow = mapManager.getInfoWindow();
     
-  mapManager.locationButton.addEventListener("click", showCurrentLocation);
-
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
   //For the display of info about the route
@@ -104,40 +102,4 @@ let userLocationMarker;
   markerManager.drop(mapManager);
 
 
-  function showCurrentLocation(){
-
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-
-          userLocationMarker = new UserPositionOverlay(pos, "./images/user.png")
-          userLocationMarker.setMap(map)
-          map.setCenter(pos);
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  }
-
-  //Fired if user refuses to give us access to his location
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-      browserHasGeolocation
-        ? "Erreur: Le Service de Géolocatlisation a échoué."
-        : "Erreur: Votre navigateur ne supporte pas la géolocalisation."
-    );
-    infoWindow.open(map);
-  }
-  
 })();

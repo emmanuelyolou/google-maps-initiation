@@ -25,8 +25,9 @@ export class DirectionsHelper{
             // avoidTolls: Boolean,
             // region: String
           },
-          function(result, status){
+          (result, status) => {
             if(status == 'OK'){
+                console.log(result)
                 this.directionsRenderer.setDirections(result);
             }
             else{

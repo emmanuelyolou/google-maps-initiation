@@ -3,9 +3,12 @@ export default class MapManager{
     mapOptions;
     infoWindow;
     locationButton;
+    userLocationMarker;
 
     constructor(){
         this.initMap();
+        this.initLocationButton();
+        let userLocationMarker = null;
     }
     
     initMap () {
@@ -19,7 +22,6 @@ export default class MapManager{
             this.infoWindow = new google.maps.InfoWindow({
                 maxWidth: 350
             });
-            this.initLocationButton();
         }
     }
     initInfoWindow ()  {
@@ -56,11 +58,53 @@ export default class MapManager{
         locationIcon.textContent = "my_location";
         locationButton.appendChild(locationIcon);
         this.locationButton = locationButton;
-        this.addControl(locationButton, google.maps.ControlPosition.RIGHT_BOTTOM);
+        this.addControl(this.locationButton, google.maps.ControlPosition.RIGHT_BOTTOM);
+        this.locationButton.addEventListener("click", () => this.showCurrentLocation());
+
     }
 
     addControl(control, position){
         this.map.controls[position].push(control);
     }
+    
+    showCurrentLocation(){
+        // Try HTML5 geolocation.
+        // let self = this;
+        
+        if (navigator.geolocation) {
+            
+                navigator.geolocation.getCurrentPosition( (position) => {
+                    
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+            
+                    this.userLocationMarker = new UserPositionOverlay(pos, "./images/user.png")
+                    this.userLocationMarker.setMap(map)
+                    this.map.setCenter(pos);
+                    },
+                    () => {
+                        this._handleLocationError(true, this.map.getCenter());
+                    }
+                );
+        } else {
+          // Browser doesn't support Geolocation
+          this._handleLocationError(false, this.map.getCenter());
+        }
+    }
+
+      //Fired if user refuses to give us access to his location
+    _handleLocationError(browserHasGeolocation, pos) {
+        this.infoWindow.setPosition(pos);
+        this.infoWindow.setContent(
+          browserHasGeolocation
+            ? "Erreur: Le Service de Géolocatlisation a échoué."
+            : "Erreur: Votre navigateur ne supporte pas la géolocalisation."
+        );
+        this.infoWindow.open(this.map);
+      }
+      
+    
     
 }
