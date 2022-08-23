@@ -69,7 +69,7 @@ let userLocationMarker;
           markerManager.agencyList.filter(agency => agency.id_agence == destinationInput.value)[0];
 
           originPos = { 
-            lat: selectedOriginAgency.latitude_agence + 100, 
+            lat: selectedOriginAgency.latitude_agence, 
             lng: selectedOriginAgency.longitude_agence 
           };
           destinationPos = { 
