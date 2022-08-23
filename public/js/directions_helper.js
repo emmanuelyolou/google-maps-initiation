@@ -5,6 +5,11 @@ export class DirectionsHelper{
     constructor(map){
         this.directionsService = new google.maps.DirectionsService();
         this.directionsRenderer = new google.maps.DirectionsRenderer();
+        this.directionsRenderer.setOptions({
+            polylineOptions: {
+              strokeColor: 'red'
+            }
+          });
         this.map = map;
     }
 
