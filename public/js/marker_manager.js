@@ -22,6 +22,10 @@ export default class MarkerManager{
             },
             map: mapManager.getMap(),
             animation: google.maps.Animation.DROP,
+            icon: {
+              url: './images/working.png',
+              scaledSize: new google.maps.Size(40, 40)
+            }
           })
         );
         this.markerList[i].addListener("click", () => {

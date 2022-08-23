@@ -4,7 +4,6 @@ import MapManager from "./map_manager.js";
 import MatrixHelper from "./matrix_helper.js";
 import { DirectionsHelper } from "./directions_helper.js";
 
-let userLocationMarker;
 (function initMap() {
   let mapManager = new MapManager();
   let map = mapManager.getMap();
@@ -14,9 +13,9 @@ let userLocationMarker;
   //For the display of info about the route
   const routeInfoInput = document.createElement("textarea");
 
-  originLocationInput.classList.add('location-input', 'origin-location')
+  originLocationInput.classList.add('location-input', 'origin-location');
   destinationInput.classList.add('location-input', 'destination');
-  routeInfoInput.classList.add("route-info")
+  routeInfoInput.classList.add("route-info");
   //Default selected options 
   const originPlaceholder = document.createElement("option");
   const destinationPlaceholder = document.createElement("option");
@@ -104,8 +103,6 @@ let userLocationMarker;
     });
   });
 
-  //We wait for a few seconds before showing the markers on the map
-  // setTimeout(markerManager.drop(map), 3300);
   markerManager.drop(mapManager);
 
 
