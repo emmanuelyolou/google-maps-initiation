@@ -3,6 +3,7 @@ import MarkerManager from "./marker_manager.js";
 import MapManager from "./map_manager.js";
 import UserPositionOverlay from './user_position_overlay.js'
 import MatrixHelper from "./matrix_helper.js";
+import { DirectionsHelper } from "./directions_helper.js";
 
 let userLocationMarker;
 (function initMap() {
@@ -60,20 +61,37 @@ let userLocationMarker;
     inputField.addEventListener('change', () => {
       let selectedOriginAgency;
       let selectedDestinationAgency;
+      let originPos;
+      let destinationPos;
       
       if(originLocationInput.value != "0" && destinationInput.value != "0" ){
         selectedOriginAgency = 
           markerManager.agencyList.filter(agency => agency.id_agence == originLocationInput.value)[0];
         selectedDestinationAgency = 
           markerManager.agencyList.filter(agency => agency.id_agence == destinationInput.value)[0];
+
+          originPos = { 
+            lat: selectedOriginAgency.latitude_agence, 
+            lng: selectedOriginAgency.longitude_agence 
+          };
+          destinationPos = { 
+            lat: selectedDestinationAgency.latitude_agence, 
+            lng: selectedDestinationAgency.longitude_agence 
+          }
+
         matrixHelper.getDistanceMatrix(
-          { lat: selectedOriginAgency.latitude_agence, lng: selectedOriginAgency.longitude_agence},
-          { lat: selectedDestinationAgency.latitude_agence, lng: selectedDestinationAgency.longitude_agence },
+          originPos,
+          destinationPos,
           function(response){ 
-            routeInfoInput.value = "Distance: " + response.distance.text;
+            routeInfoInput.value = "Distance: " + response.distance.text + "\r\n";
+            routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
             // routeDistanceInfo.innerHTML +
           }
         );
+
+        //DIRECTIONS 
+        let directionsHelper = new DirectionsHelper();
+        directionsHelper.route( originPos, destinationPos );
       }
       else{
         routeInfoInput.value = "";
@@ -121,27 +139,5 @@ let userLocationMarker;
     );
     infoWindow.open(map);
   }
-
   
-  
-  // let directionService = new google.maps.DirectionsService();
-
-  // directionService.route({
-  //   origin: origin,
-  //   destination: destination,
-  //   travelMode: 'DRIVING',
-  //   // transitOptions: TransitOptions,
-  //   // drivingOptions: DrivingOptions,
-  //   // unitSystem: UnitSystem,
-  //   // waypoints[]: DirectionsWaypoint,
-  //   // optimizeWaypoints: Boolean,
-  //   // provideRouteAlternatives: Boolean,
-  //   // avoidFerries: Boolean,
-  //   // avoidHighways: Boolean,
-  //   // avoidTolls: Boolean,
-  //   // region: String
-  // },
-  // function handleResponse(resp1, resp2){
-  //   // console.log(resp1, resp2);
-  // })
 })();
