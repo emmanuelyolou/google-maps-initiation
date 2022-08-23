@@ -7,7 +7,7 @@ export class DirectionsHelper{
         this.directionsRenderer = new google.maps.DirectionsRenderer();
         this.directionsRenderer.setOptions({
             polylineOptions: {
-              strokeColor: 'red'
+              strokeColor: '#7f1f80'
             }
           });
         this.map = map;
