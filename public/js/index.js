@@ -8,7 +8,6 @@ let userLocationMarker;
 (function initMap() {
   let mapManager = new MapManager();
   let map = mapManager.getMap();
-  let infoWindow = mapManager.getInfoWindow();
     
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
@@ -79,7 +78,7 @@ let userLocationMarker;
         matrixHelper.getDistanceMatrix(
           originPos,
           destinationPos,
-          function(response){ 
+          function(response){
             routeInfoInput.value = "Distance: " + response.distance.text + "\r\n";
             routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
             // routeDistanceInfo.innerHTML +
@@ -87,7 +86,7 @@ let userLocationMarker;
         );
 
         //DIRECTIONS 
-        let directionsHelper = new DirectionsHelper();
+        let directionsHelper = new DirectionsHelper(map);
         directionsHelper.route( originPos, destinationPos );
       }
       else{
