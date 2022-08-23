@@ -14,24 +14,27 @@ let userLocationMarker;
 
   const originLocationInput = document.createElement("select");
   const destinationInput = document.createElement("select");
+  const routeInfoInput = document.createElement("textarea");
 
+  originLocationInput.classList.add('location-input', 'origin-location')
+  destinationInput.classList.add('location-input', 'destination');
+  routeInfoInput.classList.add("route-info")
   //Default selected options 
   const originPlaceholder = document.createElement("option");
   const destinationPlaceholder = document.createElement("option");
 
-  originLocationInput.classList.add('location-input', 'origin-location')
   //Default text and values for the select tags
   originPlaceholder.innerHTML = "Choisissez un départ";
   destinationPlaceholder.innerHTML = "Choisissez une destination";
-  destinationInput.classList.add('location-input', 'destination');
   originPlaceholder.setAttribute("value", "0")
   destinationPlaceholder.setAttribute('value', "0");
 
   originLocationInput.appendChild(originPlaceholder);
   destinationInput.appendChild(destinationPlaceholder);
 
-  mapManager.addControl(originLocationInput, google.maps.ControlPosition.LEFT_TOP)
-  mapManager.addControl(destinationInput, google.maps.ControlPosition.LEFT_TOP)
+  mapManager.addControl(originLocationInput, google.maps.ControlPosition.LEFT_TOP);
+  mapManager.addControl(destinationInput, google.maps.ControlPosition.LEFT_TOP);
+  mapManager.addControl(routeInfoInput, google.maps.ControlPosition.LEFT_TOP);
   
   let markerManager = new MarkerManager(map);
   //Defines then displays multiple markers on the map

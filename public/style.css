@@ -1,3 +1,7 @@
+html{
+  --radius: .4rem;
+  --input-width: 13rem;
+}
 /* 
 * Always set the map height explicitly to define the size of the div element
 * that contains the map. 
@@ -14,6 +18,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 .user-location-btn{
   display: flex;
@@ -70,10 +75,16 @@ body {
     }
 }
 
-.location-input{
+.location-input, .route-info{
   outline: none;
-  width: 13rem;
-  padding: .5rem;
   margin: 1rem 0 0 1rem;
-  border-radius: .4rem;
+  border-radius: var(--radius);
+  padding: .5rem;
+}
+.location-input{
+  width: var(--input-width);
+}
+.route-info{
+  width: calc( var(--input-width) - 1rem);
+  height: 5rem;
 }
