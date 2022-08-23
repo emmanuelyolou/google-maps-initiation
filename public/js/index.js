@@ -63,8 +63,11 @@ let userLocationMarker;
         selectedDestinationAgency = 
           markerManager.agencyList.filter(agency => agency.id_agence == destinationInput.value)[0];
         matrixHelper.getDistanceMatrix(
-          { lat: selectedOriginAgency.latitude_agence, lng: selectedOriginAgency.longitude_agence },
-          { lat: selectedDestinationAgency.latitude_agence, lng: selectedDestinationAgency.longitude_agence }
+          { lat: selectedOriginAgency.latitude_agence, lng: selectedOriginAgency.longitude_agence},
+          { lat: selectedDestinationAgency.latitude_agence, lng: selectedDestinationAgency.longitude_agence },
+          function(response){ 
+            console.log(response);
+          }
         );
       }
     });

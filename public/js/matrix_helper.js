@@ -4,7 +4,8 @@ export default class MatrixHelper {
         this.matrixService = new google.maps.DistanceMatrixService();
     }
 
-    getDistanceMatrix(origin, destination) {
+    getDistanceMatrix(origin, destination, callback) {
+        let result;
         this.matrixService.getDistanceMatrix(
             {
                 origins: [ origin ],
@@ -15,16 +16,29 @@ export default class MatrixHelper {
                 // unitSystem: UnitSystem,
                 // avoidHighways: Boolean,
                 // avoidTolls: Boolean,
-            }, this.distanceMatrixCallback
+            }, function(response, status){
+                if(status == 'OK'){
+                    callback(response.rows[0].elements[0]);
+                }
+                else if (status == 'ZERO_RESULTS'){
+                    //throw error('Pas de résultat)
+                    callback(response, status);
+                }
+                else{
+                    //throw error('erreur incoonue')
+                }
+                
+            }
         );
     }
   
   
     distanceMatrixCallback(response, status){
         if(status == 'OK'){
-            console.log("distance: ", response.rows[0].elements[0].distance);
-            console.log("duration: ", response.rows[0].elements[0].duration);
+            // console.log("distance: ", response.rows[0].elements[0].distance);
+            // console.log("duration: ", response.rows[0].elements[0].duration);
         }
+        return response;
     }
 
 }
