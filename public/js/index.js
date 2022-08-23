@@ -69,7 +69,7 @@ let userLocationMarker;
           markerManager.agencyList.filter(agency => agency.id_agence == destinationInput.value)[0];
 
           originPos = { 
-            lat: selectedOriginAgency.latitude_agence, 
+            lat: selectedOriginAgency.latitude_agence + 100, 
             lng: selectedOriginAgency.longitude_agence 
           };
           destinationPos = { 
@@ -77,23 +77,30 @@ let userLocationMarker;
             lng: selectedDestinationAgency.longitude_agence 
           }
 
-        matrixHelper.getDistanceMatrix(
-          originPos,
-          destinationPos,
-          function(response){
-            routeInfoInput.value = "Distance: " + response.distance.text + "\r\n";
-            routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
-            // routeDistanceInfo.innerHTML +
-          }
-        );
-
-        //DIRECTIONS 
-        directionsHelper.route( originPos, destinationPos );
+        try {
+	        matrixHelper.getDistanceMatrix(
+	          originPos,
+	          destinationPos,
+	          function(response){
+	            routeInfoInput.value = "Distance: " + response.distance.text + "\r\n";
+	            routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
+	            // routeDistanceInfo.innerHTML +
+	          },
+            err => console.log(err)
+	        );
+	
+	        //DIRECTIONS 
+	        directionsHelper.route( originPos, destinationPos, (err => console.log(err) ));
+        } catch (error) {
+          console.log(error);
+          alert('erreur');
+        }
       }
       else{
         routeInfoInput.value = "";
         directionsHelper.removeRoute();
       }
+      
     });
   });
 

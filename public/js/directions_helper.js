@@ -8,7 +8,7 @@ export class DirectionsHelper{
         this.map = map;
     }
 
-    route(origin, destination){
+    route(origin, destination, errorCallback){
         this.directionsRenderer.setMap(this.map);
         this.directionsService.route({
             origin: origin,
@@ -26,12 +26,19 @@ export class DirectionsHelper{
             // region: String
           },
           (result, status) => {
-            if(status == 'OK'){
-                this.directionsRenderer.setDirections(result);
-            }
-            else{
-                throw Error("Une erreur est survenue.");
-            }
+            try {
+	            if(status == 'OK'){
+	                this.directionsRenderer.setDirections(result);
+	            }
+	            else if (status == 'ZERO_RESULTS'){
+	                throw Error("Pas de résultat disponible.");
+	            }
+	            else{
+	                throw Error("Une erreur est survenue. Veuillez réessayer.");
+	            }
+                } catch (error) {
+                    errorCallback(error.message);
+                }
           }
         );
     }
