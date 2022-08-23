@@ -6,10 +6,10 @@ export class DirectionsHelper{
         this.directionsService = new google.maps.DirectionsService();
         this.directionsRenderer = new google.maps.DirectionsRenderer();
         this.map = map;
-        this.directionsRenderer.setMap(map);
     }
 
     route(origin, destination){
+        this.directionsRenderer.setMap(this.map);
         this.directionsService.route({
             origin: origin,
             destination: destination,
@@ -27,7 +27,6 @@ export class DirectionsHelper{
           },
           (result, status) => {
             if(status == 'OK'){
-                console.log(result)
                 this.directionsRenderer.setDirections(result);
             }
             else{
@@ -35,6 +34,9 @@ export class DirectionsHelper{
             }
           }
         );
+    }
+    removeRoute(){
+        this.directionsRenderer.setMap(null);
     }
   
 }

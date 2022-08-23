@@ -53,6 +53,8 @@ let userLocationMarker;
   });
 
   let matrixHelper = new MatrixHelper(); 
+  let directionsHelper = new DirectionsHelper(map);
+
   [originLocationInput, destinationInput].forEach( inputField => {
     inputField.addEventListener('change', () => {
       let selectedOriginAgency;
@@ -86,11 +88,11 @@ let userLocationMarker;
         );
 
         //DIRECTIONS 
-        let directionsHelper = new DirectionsHelper(map);
         directionsHelper.route( originPos, destinationPos );
       }
       else{
         routeInfoInput.value = "";
+        directionsHelper.removeRoute();
       }
     });
   });
