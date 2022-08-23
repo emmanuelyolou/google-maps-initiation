@@ -1,5 +1,5 @@
 html{
-  --radius: .4rem;
+  --radius: .2rem;
   --input-width: 13rem;
 }
 /* 
@@ -77,9 +77,15 @@ body {
 
 .location-input, .route-info{
   outline: none;
+  border: none;
   margin: 1rem 0 0 1rem;
   border-radius: var(--radius);
   padding: .5rem;
+  box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
+  font-family: Roboto, 'Open Sans', sans-serif;
+  font-size: .9rem;
+  color: rgb(86, 86, 86);
+  cursor: pointer;
 }
 .location-input{
   width: var(--input-width);
