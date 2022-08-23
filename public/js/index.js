@@ -86,7 +86,7 @@ let userLocationMarker;
 	            routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
 	            // routeDistanceInfo.innerHTML +
 	          },
-            err => console.log(err)
+            err => alert(err)
 	        );
 	
 	        //DIRECTIONS 

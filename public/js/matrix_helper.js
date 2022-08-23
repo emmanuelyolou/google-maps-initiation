@@ -27,10 +27,9 @@ export default class MatrixHelper {
 	                else{
 	                    throw error('Une erreur inconnue est survenue, veuillez réessayer.')
 	                }
-                    } catch (error) {
-                        errorCallbak(error.message);
-                    }
-                
+                } catch (error) {
+                    errorCallbak(error.message);
+                }
             }
         );
     }

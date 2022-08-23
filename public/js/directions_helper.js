@@ -36,9 +36,9 @@ export class DirectionsHelper{
 	            else{
 	                throw Error("Une erreur est survenue. Veuillez réessayer.");
 	            }
-                } catch (error) {
-                    errorCallback(error.message);
-                }
+            } catch (error) {
+                errorCallback(error.message);
+            }
           }
         );
     }
