@@ -1,13 +1,14 @@
 export default class DOMHelper{
     constructor(){};
 
-    createAccordion(){
+    createAccordion(accordionTitle){
         //Wrapper of the whole accordion
         let contentBox = document.createElement('div');
         contentBox.classList.add('accordion-box');
         //Title Of the accordion
         let contentTitle = document.createElement('h5');
         contentTitle.classList.add('accordion-content-title');
+        contentTitle.innerHTML = accordionTitle;
         //content
         let content = document.createElement('div');
         content.classList.add('accordion-content');
@@ -27,7 +28,7 @@ export default class DOMHelper{
         contentBox.appendChild(contentTitle);
         contentBox.appendChild(content);
         contentTitle.addEventListener('click', function(){
-            contentBox.querySelector('.accordion-content').classList.toggle('hidden')
+            this.classList.toggle('inactive')
         })
         return contentBox;
     }

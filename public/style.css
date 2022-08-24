@@ -116,7 +116,10 @@ body {
     position: absolute;
     right: 2rem;
 }
-.accordion-content.hidden{
+.accordion-content-title.inactive::after{
+  content: '-'
+}
+.accordion-content-title.inactive + .accordion-content{
     transition: all .3s ;
     height: 0;
 }
