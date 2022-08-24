@@ -13,18 +13,22 @@ export default class DOMHelper{
         content.classList.add('accordion-content');
         //Info list (eg: distance, duration...)
         let infoItemList = document.createElement('ul');
-        let infoItem = document.createElement('li');
-        let infoItemTitle = document.createElement('strong');
-        infoItemTitle.classList.add('info-item-title');
-        let infoItemValue = document.createElement('span');
+        // let infoItem = document.createElement('li');
+        // // let infoItemTitle = document.createElement('strong');
+        // // infoItemTitle.classList.add('info-item-title');
+        // // let infoItemValue = document.createElement('span');
 
-        infoItem.appendChild(infoItemTitle);
-        infoItem.appendChild(infoItemValue);
-        infoItemList.appendChild(infoItem);
+        // infoItem.appendChild(infoItemTitle);
+        // infoItem.appendChild(infoItemValue);
+        // infoItemList.appendChild(infoItem);
+
         content.appendChild(infoItemList);
 
         contentBox.appendChild(contentTitle);
         contentBox.appendChild(content);
+        contentTitle.addEventListener('click', function(){
+            contentBox.querySelector('.accordion-content').classList.toggle('hidden')
+        })
         return contentBox;
     }
 
