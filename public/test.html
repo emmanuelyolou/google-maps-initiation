@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="test.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Document</title>
     <style>
-        body{
+        /* body{
             height: 100vh;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
+        } */
        </style>
 </head>
 <body>
     
-    <div>
+    <!-- <div>
         <div class="user-position-img-wrapper"><img src="./images/user.png" alt=""></div>
+    </div> -->
+    <div class="accordion-content-box">
+        <h5 class="accordion-content-title">Titre</h5>
+        <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, eligendi dolore nam quaerat quibusdam perferendis doloremque! Eaque, cum aperiam, amet officia odit ipsa necessitatibus inventore cupiditate repellendus ut dolores esse?
+        </div>
     </div>
+
+    <script src="js/a.js"></script>
+    <script>
+        document.querySelector('.accordion-content-title').addEventListener('click', function(){
+            document.querySelector('.accordion-content').classList.toggle('hidden')
+        })
+    </script>
 </body>
 </html>
