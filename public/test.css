@@ -24,3 +24,6 @@
     transition: all .3s ;
     height: 0;
 }
+.accordion-info-item strong::after{
+    content: ': ';
+}

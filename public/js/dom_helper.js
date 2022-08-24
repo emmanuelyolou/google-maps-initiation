@@ -30,6 +30,7 @@ export default class DOMHelper{
 
     createInfoItem(title, value){
         let infoItem = document.createElement('li');
+        infoItem.classList.add('accordion-info-item')
         let infoItemTitle = document.createElement('strong');
         infoItemTitle.classList.add('info-item-title');
         infoItemTitle.innerHTML = title;
@@ -38,7 +39,7 @@ export default class DOMHelper{
 
         infoItem.appendChild(infoItemTitle);
         infoItem.appendChild(infoItemValue);
-        debugger
+        // debugger
         return infoItem;
     }
 }
