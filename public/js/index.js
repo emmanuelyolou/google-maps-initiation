@@ -35,7 +35,7 @@ import DOMHelper from "./dom_helper.js";
 
   locationControlsWrapper.appendChild(originLocationInput);
   locationControlsWrapper.appendChild(destinationInput);
-  locationControlsWrapper.appendChild(routeInfoInput);
+  // locationControlsWrapper.appendChild(routeInfoInput); TODO: delete
   mapManager.addControl(locationControlsWrapper, google.maps.ControlPosition.LEFT_TOP);
   
   let markerManager = new MarkerManager(map);
@@ -62,8 +62,11 @@ import DOMHelper from "./dom_helper.js";
   let accordionWrapper = domHelper.createAccordionWrapper();
   let originAccordion = domHelper.createLocationAccordion("origin");
   let destinationAccordion = domHelper.createLocationAccordion("destination");
+  let routeAccordion = domHelper.createRouteAccordion("trajet");
+  
   accordionWrapper.appendChild(originAccordion);
   accordionWrapper.appendChild(destinationAccordion);
+  accordionWrapper.appendChild(routeAccordion);
   mapManager.addControl(accordionWrapper, google.maps.ControlPosition.LEFT_TOP);
 
 

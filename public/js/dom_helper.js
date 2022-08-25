@@ -43,6 +43,16 @@ export default class DOMHelper{
         return accordion;
     }
 
+    createRouteAccordion(title){
+        let accordion = this.createAccordion(title);
+        let accordionItemList = accordion.querySelector('.accordion-content ul');
+        ["distance", "durée"].forEach( element => {
+            let accordionItem = this.createInfoItem( element );
+            accordionItemList.appendChild(accordionItem);
+        });
+        return accordion;
+    }
+
     createInfoItem(title, value=""){
         let infoItem = document.createElement('li');
         infoItem.classList.add('accordion-info-item', title)
