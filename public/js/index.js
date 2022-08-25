@@ -19,7 +19,6 @@ import DOMHelper from "./dom_helper.js";
 
   originLocationInput.classList.add('location-input', 'origin-location');
   destinationInput.classList.add('location-input', 'destination');
-  routeInfoInput.classList.add("route-info");
   //Default selected options 
   const originPlaceholder = document.createElement("option");
   const destinationPlaceholder = document.createElement("option");
@@ -35,7 +34,6 @@ import DOMHelper from "./dom_helper.js";
 
   locationControlsWrapper.appendChild(originLocationInput);
   locationControlsWrapper.appendChild(destinationInput);
-  // locationControlsWrapper.appendChild(routeInfoInput); TODO: delete
   mapManager.addControl(locationControlsWrapper, google.maps.ControlPosition.LEFT_TOP);
   
   let markerManager = new MarkerManager(map);
@@ -102,6 +100,7 @@ import DOMHelper from "./dom_helper.js";
       let destinationPos;
       
       if(originLocationInput.value != "0" && destinationInput.value != "0" ){
+        let accordion = routeAccordion;
         selectedOriginAgency = 
           markerManager.agencyList.filter(agency => agency.id_agence == originLocationInput.value)[0];
         selectedDestinationAgency = 
@@ -121,11 +120,13 @@ import DOMHelper from "./dom_helper.js";
 	          originPos,
 	          destinationPos,
 	          function(response){
-	            routeInfoInput.value = "Distance: " + response.distance.text + "\r\n";
-	            routeInfoInput.value += "Durée: " + response.duration.text + "\r\n";
-	            // routeDistanceInfo.innerHTML +
+              let domHelper = new DOMHelper();
+              domHelper.addDistanceInfoToAccordion(response.distance.text, accordion);
+              domHelper.addDurationInfoToAccordion(response.duration.text, accordion);
 	          },
-            err => alert(err)
+            err => {
+              alert(err);
+            }
 	        );
 	
 	        //DIRECTIONS 
@@ -136,7 +137,7 @@ import DOMHelper from "./dom_helper.js";
         }
       }
       else{
-        routeInfoInput.value = "";
+        routeInfoInput.value = ""; //TODO: delete
         directionsHelper.removeRoute();
       }
       

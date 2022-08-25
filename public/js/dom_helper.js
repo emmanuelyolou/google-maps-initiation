@@ -80,6 +80,16 @@ export default class DOMHelper{
         accordion.querySelector('.contact span').innerHTML = agency.contact_agence;
     }
 
+    //agency: Agency object from the utb_agence.json
+    addDistanceInfoToAccordion(distance, accordion){
+        accordion.querySelector('.distance span').innerHTML = distance;
+    }
+
+    //agency: Agency object from the utb_agence.json
+    addDurationInfoToAccordion(duration, accordion){
+        accordion.querySelector('.durée span').innerHTML = duration;
+    }
+
     resetLocationAccordion(locationAccordion){
         locationAccordion.querySelectorAll('.accordion-info-item span').forEach(
             infoItem => infoItem.innerHTML = ""
