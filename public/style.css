@@ -1,6 +1,8 @@
 html{
   --radius: .2rem;
   --input-width: 13.3rem;
+  --font-family: 'Roboto', 'Open Sans', sans-serif;
+  --text-color: rgb(86, 86, 86);
 }
 /* 
 * Always set the map height explicitly to define the size of the div element
@@ -64,9 +66,9 @@ body {
   border-radius: var(--radius);
   padding: .5rem;
   box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
-  font-family: Roboto, 'Open Sans', sans-serif;
+  font-family: var(--font-family);
   font-size: .9rem;
-  color: rgb(86, 86, 86);
+  color: var(--text-color);
   cursor: pointer;
 }
 .location-input{
@@ -94,13 +96,14 @@ body {
   cursor: pointer;
   margin-bottom: 0;
   box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
-  font-family: Roboto, 'Open Sans', sans-serif;
+  font-family: var(--font-family);
   font-size: .9rem;
-  color: rgb(86, 86, 86);
+  color: var(--text-color);
   border-radius: var(--radius);
 }
 .accordion-content{
     background-color: #f5f5f5;
+    padding: 0 0 .8rem 0;
     height: 5rem;
     overflow: hidden;
     transition: all .3s ;
@@ -120,6 +123,19 @@ body {
 .accordion-content-title.inactive + .accordion-content{
     transition: all .3s ;
     height: 0;
+}
+
+.accordion-content ul {
+  padding-left: 1rem;
+}
+.accordion-content ul > li{
+  margin-top: .3rem;
+  font-family: var(--font-family);
+  font-size: .8rem;
+  color: var(--text-color);
+}
+li.accordion-info-item{
+  list-style: none;
 }
 .accordion-info-item strong::after{
     content: ': ';

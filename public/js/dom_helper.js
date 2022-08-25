@@ -70,7 +70,7 @@ export default class DOMHelper{
     addAgencyInfoToAccordion(agency, accordion){
         accordion.querySelector('.agence span').innerHTML = agency.name_agence;
         accordion.querySelector('.responsable span').innerHTML = agency.responsable_agence;
-        accordion.querySelector('.contact span').innerHTML = agency.contact_agence;
+        accordion.querySelector('.contact span').innerHTML = agency.contact_agence.replaceAll(",", " - ");
         accordion.classList.remove('hidden');
     }
 
