@@ -3,6 +3,7 @@ import MarkerManager from "./marker_manager.js";
 import MapManager from "./map_manager.js";
 import MatrixHelper from "./matrix_helper.js";
 import { DirectionsHelper } from "./directions_helper.js";
+import DOMHelper from "./dom_helper.js";
 
 (function initMap() {
   let mapManager = new MapManager();
@@ -54,6 +55,15 @@ import { DirectionsHelper } from "./directions_helper.js";
     destinationOption.setAttribute('value', agency.id_agence);
     destinationInput.appendChild(destinationOption);
   });
+
+
+  //Creating the accordion
+  let domHelper = new DOMHelper();
+  let accordionWrapper = domHelper.createAccordionWrapper();
+  let originAccordion = domHelper.createAccordion("origin");
+  accordionWrapper.appendChild(originAccordion);
+  mapManager.addControl(accordionWrapper, google.maps.ControlPosition.LEFT_TOP);
+
 
   let matrixHelper = new MatrixHelper(); 
   let directionsHelper = new DirectionsHelper(map);

@@ -6,7 +6,7 @@ export default class DOMHelper{
         let contentBox = document.createElement('div');
         contentBox.classList.add('accordion-box');
         //Title Of the accordion
-        let contentTitle = document.createElement('h5');
+        let contentTitle = document.createElement('h4');
         contentTitle.classList.add('accordion-content-title');
         contentTitle.innerHTML = accordionTitle;
         //content
@@ -46,5 +46,10 @@ export default class DOMHelper{
         infoItem.appendChild(infoItemValue);
         // debugger
         return infoItem;
+    }
+    createAccordionWrapper(){
+        let accordionWrapper = document.createElement('div');
+        accordionWrapper.classList.add('accordion-wrapper');
+        return accordionWrapper;
     }
 }
