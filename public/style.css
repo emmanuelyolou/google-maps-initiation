@@ -98,12 +98,12 @@ body {
 
 /*ACCORDION*/
 .accordion-box{
-    width: 15rem;
+    width: var(--input-width);
 }
 .accordion-content-title{
     position: relative;
     background-color: antiquewhite;
-    padding: 2rem;
+    padding: 1rem;
     cursor: pointer;
     margin-bottom: 0;
 }

@@ -71,8 +71,8 @@ export default class DOMHelper{
     }
 
     resetLocationAccordion(locationAccordion){
-        locationAccordion.querySelectorAll('accordion-info-item span'.forEach(
+        locationAccordion.querySelectorAll('.accordion-info-item span').forEach(
             infoItem => infoItem.innerHTML = ""
-        ));
+        );
     }
 }
