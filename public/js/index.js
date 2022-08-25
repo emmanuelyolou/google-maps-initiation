@@ -63,6 +63,7 @@ import DOMHelper from "./dom_helper.js";
   let originAccordion = domHelper.createLocationAccordion("origin");
   let destinationAccordion = domHelper.createLocationAccordion("destination");
   accordionWrapper.appendChild(originAccordion);
+  accordionWrapper.appendChild(destinationAccordion);
   domHelper.addAgencyInfoToAccordion(markerManager.agencyList[0], originAccordion);
   mapManager.addControl(accordionWrapper, google.maps.ControlPosition.LEFT_TOP);
 

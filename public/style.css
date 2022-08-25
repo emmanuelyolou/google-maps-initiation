@@ -131,3 +131,12 @@ body {
 .info-item-title{
   text-transform: capitalize;
 }
+.accordion-content-title{
+  margin: 0;
+}
+.accordion-wrapper{
+  margin-left: 1rem;
+}
+.accordion-wrapper > *{
+  margin-top: 1rem;
+}
