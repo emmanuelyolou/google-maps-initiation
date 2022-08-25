@@ -57,24 +57,6 @@ body {
   border: 2px #0b5583 solid;
   animation: drop-shadow-anim 1s ease-in 0s infinite normal ;
 }
-@keyframes drop-shadow-anim {
-    0%{
-        transform: scale(1);
-    }
-    40%{
-      transform: scale(1.7);
-      opacity: 0.5;
-    }
-    70%{
-      transform: scale(2);
-      opacity: 0;
-    }
-    100%{
-      transform: scale(2);
-      opacity: 0;
-    }
-}
-
 .location-input, .route-info{
   outline: none;
   border: none;
@@ -98,14 +80,21 @@ body {
 
 /*ACCORDION*/
 .accordion-box{
-    width: var(--input-width);
+  width: var(--input-width);
 }
 .accordion-content-title{
-    position: relative;
-    background-color: antiquewhite;
-    padding: 1rem;
-    cursor: pointer;
-    margin-bottom: 0;
+  font-weight: normal;
+  user-select: none;
+  background-color: #fff;
+  position: relative;
+  padding: .5rem;
+  cursor: pointer;
+  margin-bottom: 0;
+  box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
+  font-family: Roboto, 'Open Sans', sans-serif;
+  font-size: .9rem;
+  color: rgb(86, 86, 86);
+  border-radius: var(--radius);
 }
 .accordion-content{
     background-color: #f5f5f5;
@@ -114,12 +103,16 @@ body {
     transition: all .3s ;
 }
 .accordion-content-title::after{
-    content: '+';
-    position: absolute;
-    right: 2rem;
+  content: '-';
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: x-large;
+  position: absolute;
+  right: 2rem;
 }
 .accordion-content-title.inactive::after{
-  content: '-'
+  content: '+';
+  font-size: medium;
 }
 .accordion-content-title.inactive + .accordion-content{
     transition: all .3s ;
@@ -139,4 +132,23 @@ body {
 }
 .accordion-wrapper > *{
   margin-top: 1rem;
+}
+
+
+@keyframes drop-shadow-anim {
+  0%{
+      transform: scale(1);
+  }
+  40%{
+    transform: scale(1.7);
+    opacity: 0.5;
+  }
+  70%{
+    transform: scale(2);
+    opacity: 0;
+  }
+  100%{
+    transform: scale(2);
+    opacity: 0;
+  }
 }
