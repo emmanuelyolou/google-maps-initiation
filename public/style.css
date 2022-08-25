@@ -128,3 +128,6 @@ body {
 .accordion-info-item strong::after{
     content: ': ';
 }
+.info-item-title{
+  text-transform: capitalize;
+}

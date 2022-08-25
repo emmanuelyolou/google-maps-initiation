@@ -60,13 +60,31 @@ import DOMHelper from "./dom_helper.js";
   //Creating the accordion
   let domHelper = new DOMHelper();
   let accordionWrapper = domHelper.createAccordionWrapper();
-  let originAccordion = domHelper.createAccordion("origin");
+  let originAccordion = domHelper.createLocationAccordion("origin");
+  let destinationAccordion = domHelper.createLocationAccordion("destination");
   accordionWrapper.appendChild(originAccordion);
   mapManager.addControl(accordionWrapper, google.maps.ControlPosition.LEFT_TOP);
 
 
   let matrixHelper = new MatrixHelper(); 
   let directionsHelper = new DirectionsHelper(map);
+
+  //Handles the display of a selected location info 
+  [originLocationInput, destinationInput].forEach( inputField => {
+    inputField.addEventListener('change', () => {
+      let accordion = inputField.classList.contains('origin-location')
+      ? originAccordion
+      : destinationAccordion;
+
+      if(inputField.value != "0"){
+        //We retrieve the info from the corresponding selected agency
+        let selectedAgency = markerManager.agencyList.filter(
+            agency => agency.id_agence == originLocationInput.value
+        )[0];
+        
+      }
+    });
+  });
 
   [originLocationInput, destinationInput].forEach( inputField => {
     inputField.addEventListener('change', () => {

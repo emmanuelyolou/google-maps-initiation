@@ -33,11 +33,21 @@ export default class DOMHelper{
         return contentBox;
     }
 
-    createInfoItem(title, value){
+    createLocationAccordion(title){
+        let accordion = this.createAccordion(title);
+        let accordionContent = accordion.querySelector('.accordion-content');
+        ["distance", "responsable", "contact"].forEach( element => {
+            let accordionItem = this.createInfoItem( element );
+            accordionContent.appendChild(accordionItem);
+        });
+        return accordion;
+    }
+
+    createInfoItem(title, value=""){
         let infoItem = document.createElement('li');
         infoItem.classList.add('accordion-info-item')
         let infoItemTitle = document.createElement('strong');
-        infoItemTitle.classList.add('info-item-title');
+        infoItemTitle.classList.add('info-item-title', title);
         infoItemTitle.innerHTML = title;
         let infoItemValue = document.createElement('span');
         infoItemValue.innerHTML = value;
@@ -51,5 +61,8 @@ export default class DOMHelper{
         let accordionWrapper = document.createElement('div');
         accordionWrapper.classList.add('accordion-wrapper');
         return accordionWrapper;
+    }
+    addAgencyInfoToAccordion(agency, accordion){
+
     }
 }
