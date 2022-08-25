@@ -35,19 +35,19 @@ export default class DOMHelper{
 
     createLocationAccordion(title){
         let accordion = this.createAccordion(title);
-        let accordionContent = accordion.querySelector('.accordion-content');
-        ["distance", "responsable", "contact"].forEach( element => {
+        let accordionItemList = accordion.querySelector('.accordion-content ul');
+        ["agence", "responsable", "contact"].forEach( element => {
             let accordionItem = this.createInfoItem( element );
-            accordionContent.appendChild(accordionItem);
+            accordionItemList.appendChild(accordionItem);
         });
         return accordion;
     }
 
     createInfoItem(title, value=""){
         let infoItem = document.createElement('li');
-        infoItem.classList.add('accordion-info-item')
+        infoItem.classList.add('accordion-info-item', title)
         let infoItemTitle = document.createElement('strong');
-        infoItemTitle.classList.add('info-item-title', title);
+        infoItemTitle.classList.add('info-item-title');
         infoItemTitle.innerHTML = title;
         let infoItemValue = document.createElement('span');
         infoItemValue.innerHTML = value;
@@ -62,7 +62,17 @@ export default class DOMHelper{
         accordionWrapper.classList.add('accordion-wrapper');
         return accordionWrapper;
     }
-    addAgencyInfoToAccordion(agency, accordion){
 
+    //agency: Agency object from the utb_agence.json
+    addAgencyInfoToAccordion(agency, accordion){
+        accordion.querySelector('.agence span').innerHTML = agency.name_agence;
+        accordion.querySelector('.responsable span').innerHTML = agency.responsable_agence;
+        accordion.querySelector('.contact span').innerHTML = agency.contact_agence;
+    }
+
+    resetLocationAccordion(locationAccordion){
+        locationAccordion.querySelectorAll('accordion-info-item span'.forEach(
+            infoItem => infoItem.innerHTML = ""
+        ));
     }
 }
