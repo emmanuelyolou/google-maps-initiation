@@ -121,8 +121,7 @@ import DOMHelper from "./dom_helper.js";
 	          destinationPos,
 	          function(response){
               let domHelper = new DOMHelper();
-              domHelper.addDistanceInfoToAccordion(response.distance.text, routeAccordion);
-              domHelper.addDurationInfoToAccordion(response.duration.text, routeAccordion);
+              domHelper.addRouteInfoToAccordion(response.distance.text, response.duration.text, routeAccordion);
 	          },
             err => {
               alert(err);

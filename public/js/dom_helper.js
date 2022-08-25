@@ -4,6 +4,8 @@ export default class DOMHelper{
     createAccordion(accordionTitle){
         //Wrapper of the whole accordion
         let contentBox = document.createElement('div');
+        //Accordions are hidden by default
+        contentBox.classList.add('hidden');
         contentBox.classList.add('accordion-box', accordionTitle);
         //Title Of the accordion
         let contentTitle = document.createElement('h4');
@@ -14,15 +16,6 @@ export default class DOMHelper{
         content.classList.add('accordion-content');
         //Info list (eg: distance, duration...)
         let infoItemList = document.createElement('ul');
-        // let infoItem = document.createElement('li');
-        // // let infoItemTitle = document.createElement('strong');
-        // // infoItemTitle.classList.add('info-item-title');
-        // // let infoItemValue = document.createElement('span');
-
-        // infoItem.appendChild(infoItemTitle);
-        // infoItem.appendChild(infoItemValue);
-        // infoItemList.appendChild(infoItem);
-
         content.appendChild(infoItemList);
 
         contentBox.appendChild(contentTitle);
@@ -78,15 +71,23 @@ export default class DOMHelper{
         accordion.querySelector('.agence span').innerHTML = agency.name_agence;
         accordion.querySelector('.responsable span').innerHTML = agency.responsable_agence;
         accordion.querySelector('.contact span').innerHTML = agency.contact_agence;
+        accordion.classList.remove('hidden');
     }
 
     //agency: Agency object from the utb_agence.json
-    addDistanceInfoToAccordion(distance, accordion){
+    addRouteInfoToAccordion(distance, duration, accordion){
+        this._addDistanceInfoToAccordion(distance, accordion);
+        this._addDurationInfoToAccordion(duration, accordion);
+        accordion.classList.remove('hidden');
+    }
+
+    //agency: Agency object from the utb_agence.json
+    _addDistanceInfoToAccordion(distance, accordion){
         accordion.querySelector('.distance span').innerHTML = distance;
     }
 
     //agency: Agency object from the utb_agence.json
-    addDurationInfoToAccordion(duration, accordion){
+    _addDurationInfoToAccordion(duration, accordion){
         accordion.querySelector('.durée span').innerHTML = duration;
     }
 
@@ -94,10 +95,12 @@ export default class DOMHelper{
         locationAccordion.querySelectorAll('.accordion-info-item span').forEach(
             infoItem => infoItem.innerHTML = ""
         );
+        locationAccordion.classList.add('hidden');
     }
     resetRouteAccordion(routeAccordion){
         routeAccordion.querySelectorAll('.accordion-info-item span').forEach(
             infoItem => infoItem.innerHTML = ""
         );
+        routeAccordion.classList.add('hidden');
     }
 }
