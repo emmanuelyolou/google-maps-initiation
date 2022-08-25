@@ -58,7 +58,7 @@ import DOMHelper from "./dom_helper.js";
   //Creating the accordion
   let domHelper = new DOMHelper();
   let accordionWrapper = domHelper.createAccordionWrapper();
-  let originAccordion = domHelper.createLocationAccordion("origin");
+  let originAccordion = domHelper.createLocationAccordion("origine");
   let destinationAccordion = domHelper.createLocationAccordion("destination");
   let routeAccordion = domHelper.createRouteAccordion("trajet");
   
@@ -98,9 +98,9 @@ import DOMHelper from "./dom_helper.js";
       let selectedDestinationAgency;
       let originPos;
       let destinationPos;
+      let routeAccordion = document.querySelector('.trajet');
       
       if(originLocationInput.value != "0" && destinationInput.value != "0" ){
-        let accordion = routeAccordion;
         selectedOriginAgency = 
           markerManager.agencyList.filter(agency => agency.id_agence == originLocationInput.value)[0];
         selectedDestinationAgency = 
@@ -121,8 +121,8 @@ import DOMHelper from "./dom_helper.js";
 	          destinationPos,
 	          function(response){
               let domHelper = new DOMHelper();
-              domHelper.addDistanceInfoToAccordion(response.distance.text, accordion);
-              domHelper.addDurationInfoToAccordion(response.duration.text, accordion);
+              domHelper.addDistanceInfoToAccordion(response.distance.text, routeAccordion);
+              domHelper.addDurationInfoToAccordion(response.duration.text, routeAccordion);
 	          },
             err => {
               alert(err);
@@ -137,7 +137,7 @@ import DOMHelper from "./dom_helper.js";
         }
       }
       else{
-        routeInfoInput.value = ""; //TODO: delete
+        domHelper.resetRouteAccordion(routeAccordion);
         directionsHelper.removeRoute();
       }
       

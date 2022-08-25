@@ -4,7 +4,7 @@ export default class DOMHelper{
     createAccordion(accordionTitle){
         //Wrapper of the whole accordion
         let contentBox = document.createElement('div');
-        contentBox.classList.add('accordion-box');
+        contentBox.classList.add('accordion-box', accordionTitle);
         //Title Of the accordion
         let contentTitle = document.createElement('h4');
         contentTitle.classList.add('accordion-content-title');
@@ -92,6 +92,11 @@ export default class DOMHelper{
 
     resetLocationAccordion(locationAccordion){
         locationAccordion.querySelectorAll('.accordion-info-item span').forEach(
+            infoItem => infoItem.innerHTML = ""
+        );
+    }
+    resetRouteAccordion(routeAccordion){
+        routeAccordion.querySelectorAll('.accordion-info-item span').forEach(
             infoItem => infoItem.innerHTML = ""
         );
     }

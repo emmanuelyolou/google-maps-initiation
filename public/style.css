@@ -108,7 +108,7 @@ body {
   transform: translateY(-50%);
   font-size: x-large;
   position: absolute;
-  right: 2rem;
+  right: 1rem;
 }
 .accordion-content-title.inactive::after{
   content: '+';
