@@ -95,6 +95,8 @@ body {
   width: calc( var(--input-width) - 1rem);
   height: 5rem;
 }
+
+/*ACCORDION*/
 .accordion-box{
     width: 15rem;
 }
