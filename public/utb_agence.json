@@ -229,5 +229,137 @@
         "responsable_agence": "",
         "contact_agence": "0574885988"
 
+    },
+    {
+        "id_agence": "022",
+        "name_agence": "Man",
+        "latitude_agence": 7.4024277,
+        "longitude_agence": -7.5602325,
+        "localite_agence": "Man",
+        "adres_agence": "Quartier Sari à côté de la station TOTAL",
+        "responsable_agence": "",
+        "contact_agence": "0505710335"
+
+    },
+    {
+        "id_agence": "023",
+        "name_agence": "Meagui",
+        "latitude_agence": 5.4040217,
+        "longitude_agence": -6.5564027,
+        "localite_agence": "Meagui",
+        "adres_agence": "Au quartier commerce en face du magasin de gros CDCI",
+        "responsable_agence": "",
+        "contact_agence": "0506182915"
+
+    },
+    {
+        "id_agence": "024",
+        "name_agence": "San pédro",
+        "latitude_agence": 4.7784367,
+        "longitude_agence": -6.6497389,
+        "localite_agence": "San pédro",
+        "adres_agence": "Au niveau du rond point de la gare",
+        "responsable_agence": "",
+        "contact_agence": "0504003934"
+
+    },
+    {
+        "id_agence": "025",
+        "name_agence": "Sinfra",
+        "latitude_agence": 6.616063,
+        "longitude_agence": -5.9139164,
+        "localite_agence": "Sinfra",
+        "adres_agence": "Quartier Résidentiel Extension après le rond-point, ancienne gare UPCI, à côté du camp des Eaux et Forêts",
+        "responsable_agence": "",
+        "contact_agence": "0574615221"
+
+    },
+    {
+        "id_agence": "026",
+        "name_agence": "Soubré",
+        "latitude_agence": 5.7888438,
+        "longitude_agence": -6.601107,
+        "localite_agence": "Soubré",
+        "adres_agence": "Non loin de la station Oilibya en face de la pharmacie de la gare",
+        "responsable_agence": "",
+        "contact_agence": "0506182946"
+
+    },
+    {
+        "id_agence": "027",
+        "name_agence": "Tiébissou",
+        "latitude_agence": 7.159208,
+        "longitude_agence": -5.226741,
+        "localite_agence": "Tiébissou",
+        "adres_agence": "En face de la station Shell à côté de la CECP",
+        "responsable_agence": "",
+        "contact_agence": "0506182908"
+
+    },
+    {
+        "id_agence": "028",
+        "name_agence": "Toumodi",
+        "latitude_agence": 6.5549871,
+        "longitude_agence": -5.0232262,
+        "localite_agence": "Toumodi",
+        "adres_agence": "Située à côté de l'école professionnelle ISPT à droite de l'entrée de Toumodi",
+        "responsable_agence": "",
+        "contact_agence": "0574857013"
+
+    },
+    {
+        "id_agence": "029",
+        "name_agence": "Treichville",
+        "latitude_agence": 5.2987107,
+        "longitude_agence": -4.0054192,
+        "localite_agence": "Treichville",
+        "adres_agence": "Gare de Bassam au sein du centre commercial KOBESI",
+        "responsable_agence": "",
+        "contact_agence": "0544330462"
+
+    },
+    {
+        "id_agence": "030",
+        "name_agence": "Yabayo",
+        "latitude_agence": 5.9499887,
+        "longitude_agence": -6.6032463,
+        "localite_agence": "Yabayo",
+        "adres_agence": "Au rond point de Yabayo",
+        "responsable_agence": "",
+        "contact_agence": "0506182910"
+
+    },
+    {
+        "id_agence": "031",
+        "name_agence": "Yamoussoukro",
+        "latitude_agence": 6.8122939,
+        "longitude_agence": -5.2670684,
+        "localite_agence": "Yamoussoukro",
+        "adres_agence": "Située entre la banque atlantique et la pharmacie des 220 logements",
+        "responsable_agence": "",
+        "contact_agence": "0506182898,0545973290"
+
+    },
+    {
+        "id_agence": "032",
+        "name_agence": "Yopougon Bae",
+        "latitude_agence": 5.35918,
+        "longitude_agence": -4.0872572,
+        "localite_agence": "Yopougon Bae",
+        "adres_agence": "",
+        "responsable_agence": "Située à 50m de la cité Bae",
+        "contact_agence": "0556978889,0506182906"
+
+    },
+    {
+        "id_agence": "033",
+        "name_agence": "Yopougon Gesco",
+        "latitude_agence": 5.3664972,
+        "longitude_agence": -4.1001634,
+        "localite_agence": "Yopougon Gesco",
+        "adres_agence": "Yopougon Gesco, dans la station SODEPCI",
+        "responsable_agence": "",
+        "contact_agence": "0504104384"
+
     }
 ]
